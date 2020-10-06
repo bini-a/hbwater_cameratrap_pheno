@@ -1,0 +1,16 @@
+#
+# ROI List for hbwtrw6
+#
+# Site: hbwtrw6
+# Veg Type: RF
+# ROI ID Number: 0001
+# Owner: Audrey Thellman
+# Creation Date: 2020-10-05
+# Creation Time: 16:27:05
+# Update Date: 2020-10-05
+# Update Time: 16:27:05
+# Description: 
+#
+start_date,start_time,end_date,end_time,maskfile,sample_image
+2018-10-13,12:04:59,9999-12-31,00:00:00,hbwtrw6_RF_0001_01.tif,Hbwtr_w6_20181013_120459.JPG
+
