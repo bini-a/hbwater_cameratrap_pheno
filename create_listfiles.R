@@ -10,12 +10,12 @@ create_filelist <- function(projdir, folder) {
   imagedir <- paste0(projdir_image, "/data_raw/", folder)
   imagedata <- data.frame(imagename = list.files(imagedir, pattern = "*.JPG"))
   #imagedata$sitename <- substr(imagedata$imagename, 1, 8)
-  imagedata$year <- substr(imagedata$imagename, 10, 13)
-  imagedata$month <- substr(imagedata$imagename, 14, 15)
-  imagedata$day <- substr(imagedata$imagename, 16, 17)
-  imagedata$hour <- substr(imagedata$imagename, 19, 20)
-  imagedata$min <- substr(imagedata$imagename, 21, 22)
-  imagedata$sec <- substr(imagedata$imagename, 23, 24)
+  imagedata$year <- as.numeric(substr(imagedata$imagename, 10, 13))
+  imagedata$month <- as.numeric(substr(imagedata$imagename, 14, 15))
+  imagedata$day <- as.numeric(substr(imagedata$imagename, 16, 17))
+  imagedata$hour <- as.numeric(substr(imagedata$imagename, 19, 20))
+  imagedata$min <- as.numeric(substr(imagedata$imagename, 21, 22))
+  imagedata$sec <- as.numeric(substr(imagedata$imagename, 23, 24))
   
   colnames(imagedata) <- NULL
 
