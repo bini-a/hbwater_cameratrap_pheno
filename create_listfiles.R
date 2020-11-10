@@ -2,6 +2,8 @@
 ## created on Oct 5 2020 
 ## ------------------------
 
+getwd()
+
 #projdir_image <- getwd()
 #folder <- "W6 Channel Oct-Dec 2018"
 
@@ -22,6 +24,11 @@ create_filelist <- function(projdir, folder) {
 write.csv(imagedata, file = paste0(imagedir, "/filelist.csv"), row.names = F, col.names = FALSE)
 }
 
-rm(projdir_image)
+
 
 create_filelist(folder = "W6 Channel Oct-Dec 2018", projdir = getwd())
+
+
+## 
+library(xROI)
+Launch()
