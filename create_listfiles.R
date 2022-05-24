@@ -4,11 +4,10 @@
 
 getwd()
 
-#projdir_image <- getwd()
-#folder <- "W6 Channel Oct-Dec 2018"
+projdir_image <- getwd()
+folder <- "W6 GC Channel 3-16-20 thru 11-5-20"
 
-create_filelist <- function(projdir, folder) {
-  projdir_image <- projdir
+create_filelist <- function(projdir_image, folder) {
   imagedir <- paste0(projdir_image, "/data_raw/", folder)
   imagedata <- data.frame(imagename = list.files(imagedir, pattern = "*.JPG"))
   #imagedata$sitename <- substr(imagedata$imagename, 1, 8)
@@ -21,14 +20,16 @@ create_filelist <- function(projdir, folder) {
   
   colnames(imagedata) <- NULL
 
-write.csv(imagedata, file = paste0(imagedir, "/filelist.csv"), row.names = F, col.names = FALSE)
+write.csv(imagedata, file = paste0(imagedir, "/filelist.csv"), row.names = F)
 }
 
+thell_proj <- "C:/Users/Thell/Documents/Duke University/Research/_HBEF/CameraTrapAnalysis/hbwater_cameratrap_pheno"
 
 
-create_filelist(folder = "W6 Channel Oct-Dec 2018", projdir = getwd())
+create_filelist(folder = "W3 GC Channel 2-5-19 thru 12-31-19", projdir = thell_proj)
 
 
 ## 
-library(xROI)
-Launch()
+library("xROI")
+
+xROI::Launch()
