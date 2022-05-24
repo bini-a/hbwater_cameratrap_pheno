@@ -1,0 +1,41 @@
+(base) weston@weston-XPS-15-9500:~/files/projects/science/bgc/dataplus$ git clone https://github.com/west
+onslaughter/hbwater_cameratrap_pheno.git                                         
+Cloning into 'hbwater_cameratrap_pheno'...
+remote: Enumerating objects: 149, done.
+remote: Counting objects: 100% (61/61), done.
+remote: Compressing objects: 100% (48/48), done.
+remote: Total 149 (delta 19), reused 39 (delta 10), pack-reused 88
+Receiving objects: 100% (149/149), 161.35 MiB | 15.77 MiB/s, done.
+Resolving deltas: 100% (19/19), done.
+(base) weston@weston-XPS-15-9500:~/files/projects/science/bgc/dataplus$ git branch -a
+fatal: not a git repository (or any of the parent directories): .git
+(base) weston@weston-XPS-15-9500:~/files/projects/science/bgc/dataplus$ cd hbwater_cameratrap_pheno.git
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+~                                                                                                        
+-- INSERT --                                                                           1,59          All
+
+
+
+
+
+                                                                                       421,1         Bot
