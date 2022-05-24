@@ -5,3 +5,4 @@
 .ipynb_checkpoints
 data_der/
 data_raw/
+*.zip
