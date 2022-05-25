@@ -2,6 +2,8 @@
 ## created on Oct 5 2020 
 ## ------------------------
 
+# test
+
 getwd()
 
 projdir_image <- getwd()
