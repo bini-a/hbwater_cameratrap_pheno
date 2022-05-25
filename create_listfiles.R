@@ -5,7 +5,7 @@
 getwd()
 
 projdir_image <- getwd()
-folder <- "W6 GC Channel 3-16-20 thru 11-5-20"
+folder <- "W6 GC Channel 3-16-20 thru 11-5-20" #testing
 
 create_filelist <- function(projdir_image, folder) {
   imagedir <- paste0(projdir_image, "/data_raw/", folder)
