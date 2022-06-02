@@ -1,5 +1,5 @@
 # hbwater_cameratrap_pheno
-Aquatic camera trap photos for HB Water
+building a pipeline for processing HB Water aquatic camera trap photos for machine learning, with hopes to support further efforts to produce models from similar datasets.
 
 ## Project Steps 
 1. image data re-organization 
@@ -10,11 +10,6 @@ Aquatic camera trap photos for HB Water
 6. run random forest model
 7. create data product: markdown
 8. create data product: application
-
-## notes
-while the above steps are roughly in order, we will be working on certain aspects of the project throughout, such as:
-  - keeping all code well-documented and clean
-  - creating Jupyter notebooks for each script with embedded markdown/html that explains each step of the script
 
 ## Current Objectives
 Tasks | People | Step
@@ -31,5 +26,11 @@ Tasks | People | Step
 ------- | -------- | --------
 create walkthrough with example files as both proof-of-concept for our data pipeline, and as a walkthrough for future users | XX | **7**
 export Jupyter notebook to *.py* files  | XX | **8**
+
+
+## notes
+while the above steps are roughly in order, we will be working on certain aspects of the project throughout, such as:
+  - keeping all code well-documented and clean
+  - creating Jupyter notebooks for each script with embedded markdown/html that explains each step of the script
 
 
