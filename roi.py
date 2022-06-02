@@ -33,21 +33,29 @@ logging.basicConfig(format='%(levelname)s ''%(processName)-10s : %(asctime)s '
 
 # Create and format to obtain pixels
 im = cv2.imread(r"C:\Users\Dell\Downloads\Hbwtr_w3_20200313_115919.JPG")
+# change coloring to RGB scale
 im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
 img = np.array(im)
+# show original image
 plt.imshow(img)
 
-print("bigb")
+# pop up roi window
 my_roi = roipoly(color = 'r')
 my_roi.display_roi()
-print("after display")
-my_mask = my_roi.get_mask(img)
-print("Mask", my_mask)
-cords = my_roi.get_roi_coordinates()
-print("cords", cords)
-mask1 = np.array(my_mask)
+# print("after display")
 
+# get mask array
+mask = my_roi.get_mask(img)
+# print("Mask", my_mask)
+
+# get coordinates of the mask
+cords = my_roi.get_roi_coordinates()
+# print("cords", cords)
+
+# copy image
 image = im.copy()
-image[my_mask!=1]=0
+# mask the image using indexing from mask array
+image[mask!=1]=0
+# show masked image
 plt.imshow(image)
 

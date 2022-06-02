@@ -98,19 +98,19 @@ class RoiPoly:
         # Create vertex coordinates for each grid cell...
         # (<0,0> is at the top left of the grid in this system)
         x, y= np.meshgrid(np.arange(nx), np.arange(ny))
-        print("x,y size", np.shape(x), np.shape(y))
+        # print("x,y size", np.shape(x), np.shape(y))
         
         x, y = x.flatten(), y.flatten()
-        print("x,y size", np.shape(x), np.shape(y))
+        # print("x,y size", np.shape(x), np.shape(y))
         
         points = np.vstack((x, y)).T
-        print("Points shape", np.shape(points))
-        print(x)
+        # print("Points shape", np.shape(points))
+        # print(x)
 
         roi_path = MplPath(poly_verts)
 
         mask = roi_path.contains_points(points).reshape((ny, nx))
-        print("mask shape", np.shape(mask))
+        # print("mask shape", np.shape(mask))
         return mask
 
 
