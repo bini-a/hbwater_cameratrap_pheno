@@ -14,7 +14,7 @@ building a pipeline for processing HB Water aquatic camera trap photos for machi
 ## Current Objectives
 Tasks | People | Step
 ------- | -------- | --------
-figure out how to show mask on consecutive images (clicking thru all the images from a particular watershed year) | HO | **2**
+figure out how to show mask on consecutive images (clicking thru all the images from a particular watershed year) | HO + BG | **2**
 allow user to, while clicking through images, stop and create a new mask associated with the date of that image  | XX | **2**
 continue debugging the GDrive image copy/rename/organization scripts  | BG, HS | **1**
 organize the GitHub repo (remove uneeded scripts and standardize naming conventions, etc.)   | XX | **3**
