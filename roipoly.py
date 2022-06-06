@@ -91,7 +91,10 @@ class RoiPoly:
         numpy array (2D)
         """
         print("Image Shape", np.shape(image))
-        ny, nx, nz = np.shape(image)
+        if len(np.shape(image)) ==3:
+            ny, nx, nz = np.shape(image)
+        else:
+            ny, nx = np.shape(image)
         poly_verts = ([(self.x[0], self.y[0])]
                       + list(zip(reversed(self.x), reversed(self.y))))
         print(poly_verts)

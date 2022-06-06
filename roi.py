@@ -56,6 +56,5 @@ cords = my_roi.get_roi_coordinates()
 image = im.copy()
 # mask the image using indexing from mask array
 image[mask!=1]=0
-# show masked image
+# # show masked image
 plt.imshow(image)
-
