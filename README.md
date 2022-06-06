@@ -34,7 +34,7 @@ while the above steps are roughly in order, we will be working on certain aspect
   - creating Jupyter notebooks for each script with embedded markdown/html that explains each step of the script
 
 
-# Progress
+## Progress
 - Figured out how to click through image files
 - Working on adding the functionality of showing and making masks.
 
