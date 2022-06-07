@@ -10,6 +10,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
+import cv2
+import os
+
+#Load in Folder of Images
+for fp in (sorted(os.listdir("/Users/hectorontiveros/Desktop/WCTEST/"))):
+    imgs.append(cv2.imread('/Users/hectorontiveros/Desktop/WCTEST/{0}'.format(fp),1))
+
+#First index contains null file, removes
+imgs.pop(0)
+
+#Converts all images into rgb
+for y in range(len(imgs)):
+    imgs[y] = cv2.cvtColor(imgs[y], cv2.COLOR_BGR2RGB)
+
+freqs = np.arange(0,len(imgs),1)
+ind = 0
 
 logger = logging.getLogger(__name__)
 
@@ -90,6 +106,7 @@ class RoiPoly:
         -------
         numpy array (2D)
         """
+
         print("Image Shape", np.shape(image))
         if len(np.shape(image)) ==3:
             ny, nx, nz = np.shape(image)
@@ -97,26 +114,15 @@ class RoiPoly:
             ny, nx = np.shape(image)
         poly_verts = ([(self.x[0], self.y[0])]
                       + list(zip(reversed(self.x), reversed(self.y))))
-        print(poly_verts)
         # Create vertex coordinates for each grid cell...
         # (<0,0> is at the top left of the grid in this system)
         x, y= np.meshgrid(np.arange(nx), np.arange(ny))
-        # print("x,y size", np.shape(x), np.shape(y))
-        
         x, y = x.flatten(), y.flatten()
-        # print("x,y size", np.shape(x), np.shape(y))
-        
-        points = np.vstack((x, y)).T
-        # print("Points shape", np.shape(points))
-        # print(x)
-
+        points = np.vstack((x, y)).T       
         roi_path = MplPath(poly_verts)
-
         mask = roi_path.contains_points(points).reshape((ny, nx))
-        # print("mask shape", np.shape(mask))
         return mask
-
-
+        
     def display_roi(self, **linekwargs):
         line = plt.Line2D(self.x + [self.x[0]], self.y + [self.y[0]],
                           color=self.color, **linekwargs)
@@ -277,16 +283,19 @@ class MultiRoi:
         self.fig = fig
         self.ax = ax
         self.rois = {}
-
+        self.imagess = []
         self.make_buttons()
 
     def make_buttons(self):
         ax_add_btn = plt.axes([0.7, 0.02, 0.1, 0.04])
         ax_finish_btn = plt.axes([0.81, 0.02, 0.1, 0.04])
+        #ax_next_btn = plt.axes([0.5, 0.02, 0.15, 0.04])
         btn_finish = Button(ax_finish_btn, 'Finish')
         btn_finish.on_clicked(self.finish)
         btn_add = Button(ax_add_btn, 'New ROI')
         btn_add.on_clicked(self.add)
+        #btn_next = Button(ax_next_btn, 'Next Image')
+        #btn_next.on_clicked(self.next)
         plt.show(block=True)
 
     def add(self, event):
@@ -313,7 +322,12 @@ class MultiRoi:
                       close_fig=False,
                       show_fig=False)
         self.rois[roi_name] = roi
-
+    '''
+    def next(self, event):
+        "Go to the next image"
+        self.ind += 1
+        
+    '''    
     def finish(self, event):
         logger.debug("Stop ROI drawing")
         plt.close(self.fig)
