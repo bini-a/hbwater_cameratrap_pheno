@@ -10,22 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
-import cv2
-import os
 
-#Load in Folder of Images
-for fp in (sorted(os.listdir("/Users/hectorontiveros/Desktop/WCTEST/"))):
-    imgs.append(cv2.imread('/Users/hectorontiveros/Desktop/WCTEST/{0}'.format(fp),1))
-
-#First index contains null file, removes
-imgs.pop(0)
-
-#Converts all images into rgb
-for y in range(len(imgs)):
-    imgs[y] = cv2.cvtColor(imgs[y], cv2.COLOR_BGR2RGB)
-
-freqs = np.arange(0,len(imgs),1)
-ind = 0
 
 logger = logging.getLogger(__name__)
 
@@ -121,6 +106,7 @@ class RoiPoly:
         points = np.vstack((x, y)).T       
         roi_path = MplPath(poly_verts)
         mask = roi_path.contains_points(points).reshape((ny, nx))
+        print(mask)
         return mask
         
     def display_roi(self, **linekwargs):
