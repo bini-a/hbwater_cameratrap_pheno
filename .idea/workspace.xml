@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73f5dcd1-8e3e-4049-a31f-dc74e0c7a8fb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/01 reorganize-data/rename_script.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/02 roi/event-test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/02 roi/roi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/02 roi/slide-through-images.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/dep/helpers.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/dep/roipoly.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/CreateMaskedImages.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/camera_data.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/camera_data_raw.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/cameratrap_data.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/cameratrap_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/snowcam_training.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/sandbox/create_listfiles.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CreateMaskedImages.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cameratrap_project/camera_data.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cameratrap_project/camera_data_raw.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cameratrap_project/cameratrap_data.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cameratrap_project/cameratrap_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cameratrap_project/snowcam_training.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_listfiles.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/event_Test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rename_script.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roipoly.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/slide_through_images.py" beforeDir="false" />
-    </list>
+    <list default="true" id="73f5dcd1-8e3e-4049-a31f-dc74e0c7a8fb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 .ipynb_checkpoints
+.idea
 data_der/
 data_raw/
 data_der.zip
