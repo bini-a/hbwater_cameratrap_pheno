@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="73f5dcd1-8e3e-4049-a31f-dc74e0c7a8fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/01 reorganize-data/rename_script.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/02 roi/event-test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/02 roi/roi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/02 roi/slide-through-images.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/dep/helpers.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/dep/roipoly.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/CreateMaskedImages.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/camera_data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/camera_data_raw.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/cameratrap_data.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/cameratrap_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/cameratrap_project/snowcam_training.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/sandbox/create_listfiles.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CreateMaskedImages.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cameratrap_project/camera_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cameratrap_project/camera_data_raw.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cameratrap_project/cameratrap_data.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cameratrap_project/cameratrap_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cameratrap_project/snowcam_training.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_listfiles.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event_Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rename_script.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/roipoly.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/slide_through_images.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a89a6804-9866-4030-ab7f-cf163e34163e" />
+        <option name="url" value="https://github.com/huo24/hbwater_cameratrap_pheno.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AJ6GbRk3bwR48ozBCESU5fWIWG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="RunManager" selected="Python.roi">
+    <configuration name="roi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hbwater_cameratrap_pheno" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/roi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="slide_through_images" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hbwater_cameratrap_pheno" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/slide_through_images.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.roi" />
+        <item itemvalue="Python.slide_through_images" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="73f5dcd1-8e3e-4049-a31f-dc74e0c7a8fb" name="Changes" comment="" />
+      <created>1654715245574</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654715245574</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
