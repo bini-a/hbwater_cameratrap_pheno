@@ -43,16 +43,20 @@ While the above steps are roughly in order, we will be working on certain aspect
 
 
 ## Repo Structure
+
 README.md
+
 data
 - derived_data
 - raw_data
+
 scripts
 - 01-filename
 - 02-filename
 - helpers.py
 - old-scripts
 - etc.
+
 dep
 - roipoly.py
 - etc.
