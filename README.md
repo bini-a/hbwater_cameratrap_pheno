@@ -50,18 +50,14 @@ While the above steps are roughly in order, we will be working on certain aspect
 README.md
 
 data
-- derived_data
-- raw_data
+- derived
+- munged
+- raw
 
 scripts
-- 01-filename
-- 02-filename
-- helpers.py
-- old-scripts
+- 01-folder
+- 02-folder
 - etc.
-
-dep
-- roipoly.py
-- etc.
-
+- dep (dependencies)
+- sandbox
 

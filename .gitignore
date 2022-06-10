@@ -1,9 +1,13 @@
 .Rproj.user
+.Rproj
 .Rhistory
 .RData
 .Ruserdata
 .ipynb_checkpoints
+.idea
 data_der/
 data_raw/
 data_der.zip
+.DS_store
+*.pyc
 
