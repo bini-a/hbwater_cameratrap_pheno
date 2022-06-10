@@ -42,15 +42,21 @@ my_roi.display_roi()
 # get mask array
 print(np.shape(img))
 img = img[:, :, 0]
+# Converts image to 2d array - necessary on Henry's mac where the 3d image threw a ValueError
+# with too many layers to unpack
+
 print(np.shape(img))
 mask = my_roi.get_mask(img)
 # print("Mask", my_mask)
 
 #
 # # get coordinates of the mask
-# try:
-#     cords = my_roi.get_roi_coordinates()
+# cords = my_roi.get_roi_coordinates()
 # # print("cords", cords)
+'''
+The above code did not work on Henry's mac (AttributeError) and was not resolved
+'''
+
 
 # copy image
 image = im.copy()
