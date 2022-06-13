@@ -50,7 +50,7 @@ curr_masked_img = None
 bnext = None
 bprev = None
 restart_masking_button = None
-my_roi = RoiPoly(color='g', show_fig=False)
+my_roi = RoiPoly(color='r', show_fig=False)
 confirm_button = None
 
 
@@ -123,10 +123,11 @@ def make_new():
     curr_masked_img = plt.gca()
     curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[curr_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[curr_ind])
-    my_roi_2 = RoiPoly(color="g", close_fig=False)
+    my_roi_2 = RoiPoly(color="r", close_fig=False)
     ### wait 5 or double click
-    plt.pause(5)
-
+    # plt.pause(5)
+    while not my_roi_2.dbl_clicked:
+        plt.pause(0.01)
     # my_roi_2.display_roi()
     # plt.close(my_roi_2.fig)
     print(my_roi_2.x, my_roi_2.y)
@@ -204,7 +205,7 @@ def select_roi(start_img_ind):
     print("show first image start")
     show_first_image(start_img_ind)
     # pop up roi window
-    my_roi = RoiPoly(color='g', close_fig=False)
+    my_roi = RoiPoly(color='r', close_fig=False)
     print("Trying to display roi")
     # my_roi.display_roi()
     print("End displaying roi")
@@ -213,7 +214,6 @@ def select_roi(start_img_ind):
     # curr_masked_img.set_title("Confirm ROI? Date: {}".format(f_date))
     # curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_img_ind])
     curr_mask = my_roi.get_mask(image_folder[start_img_ind])
-    my_roi = RoiPoly(color="g", show_fig=False)
     copy_img = image_folder[start_img_ind].copy()
     copy_img[curr_mask != 1] = 0
     # display first image with roi mask
