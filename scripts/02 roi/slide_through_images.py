@@ -29,15 +29,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
+
+
+
 #### sample image local folder
-image_folder = glob2.glob(r"C:/Users/hecon/Desktop/WCTEST/*")
+image_folder = glob2.glob(r"C:/Users/Dell/Downloads/W1/*")
 date_list = []
 for date in image_folder:
     date_list.append(date[-19:-11])
 f_date = date_list[0]
-print(f_date)
-print("Date List", date_list)
-print("Image Folder ", image_folder)
+# print(f_date)
+# print("Date List", date_list)
+# print("Image Folder ", image_folder)
 """Draw polygon regions of interest (ROIs) in matplotlib images,
 similar to Matlab's roipoly function.
 """
@@ -65,6 +68,8 @@ bnext = None
 bprev= None
 restart_masking_button=None
 my_roi = RoiPoly(color = 'r', show_fig=False)
+confirm_button = None
+
 class Index:
     ind = 0
     def get_curr_index(self):
@@ -91,7 +96,7 @@ class Index:
     #     curr_masked_img_axis = curr_masked_img.imshow(image_folder[self.ind])
     #     # curr_masked_img_axis.set_data(image_folder[self.ind])
     #     # plt.draw()
-    def restart(self, event):
+    def show_original(self, event):
         print("Showing original + ROI line")
 
         curr_masked_img_axis.set_data(image_folder[self.ind])
@@ -107,14 +112,14 @@ def read_img(path):
 def mask_items_folder():
     # print("2. EQUAL?", image_folder[0] == masked_images_list[0])
 
-    print("Started masking")
-    print("mask_length",len(masked_images_list))
+    # print("Started masking")
+    # print("mask_length",len(masked_images_list))
     for i in range(start_img_ind, len(masked_images_list)):
         curr_image = image_folder[i].copy()
         curr_image[curr_mask != 1] = 0
 
         masked_images_list[i]= curr_image
-    print("Finished masking starting from index", start_img_ind)
+    # print("Finished masking starting from index", start_img_ind)
     # print("3. EQUAL?", image_folder==masked_images_list)
 
 
@@ -168,7 +173,7 @@ def show_next_prev():
     bprev.on_clicked(callback.prev)
     restart_masking_ax = plt.axes([0.1, 0.05, 0.3, 0.075])
     restart_masking_button = Button(restart_masking_ax,"Restart masking")
-    restart_masking_button.on_clicked(callback.restart)
+    restart_masking_button.on_clicked(callback.show_original)
     return bnext, bprev, restart_masking_button
 
 def confirm_roi(event):
