@@ -5,37 +5,32 @@ Created on Mon Jun  6 14:46:12 2022
 @author: Dell
 """
 
-import logging
-
-logger = logging.getLogger(__name__)
-import os
 import matplotlib as mpl
-
 mpl.use('Qt5Agg')  # backend for windows
+# mpl.use('TkAgg') # backend for mac
 
 # TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
 
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.widgets import Button, RadioButtons, CheckButtons
 import cv2
 from roipoly import RoiPoly
 import glob2
-
+import logging
+import os
 import sys
 import logging
 import warnings
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
 
 #### sample image local folder
-image_folder = glob2.glob(r"C:/Users/Dell/Downloads/W1/*")
+image_folder = sorted(glob2.glob(r"/Users/henrysun_1/Downloads/W9 GC Channel 3-16-20 thru 11-5-20/*"))
 date_list = []
-for date in image_folder:
-    date_list.append(date[-19:-11])
+for filename in image_folder:
+    date_list.append(filename[-19:-11])
+    if filename[-4:].lower() != ".jpg":
+        image_folder.remove(filename)
 f_date = date_list[0]
 # print(f_date)
 # print("Date List", date_list)
@@ -44,17 +39,7 @@ f_date = date_list[0]
 similar to Matlab's roipoly function.
 """
 
-import sys
-import logging
-import warnings
-
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.path import Path as MplPath
-from matplotlib.widgets import Button
-
 logger = logging.getLogger(__name__)
-
 warnings.simplefilter('always', DeprecationWarning)
 
 masked_images_list = None
