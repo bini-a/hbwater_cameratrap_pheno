@@ -11,7 +11,7 @@ import os
 import matplotlib as mpl
 mpl.use('Qt5Agg')  # backend for windows
 
-
+#TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -124,36 +124,42 @@ def mask_items_folder():
 
 
 def make_new():
-    global my_roi
+    global my_roi, confirm_button, curr_masked_img_axis, curr_masked_img, curr_mask, start_img_ind, restart_masking_button
 
     fg_2= plt.gcf()
     fg_2.subplots_adjust(left=0.3, bottom=0.25)
     curr_ind = callback.get_curr_index()
     # change the content of image on curr axis
-    c_img = plt.gca()
-    c_img.set_title("Confirm ROI? Date: {}".format(date_list[curr_ind]))
-    c_img_axis = c_img.imshow(image_folder[curr_ind])
-    #
-    my_roi = RoiPoly(color="r")
-    print(my_roi.x,my_roi.y)
-    print(my_roi.x,my_roi.y)
-    print(my_roi.x,my_roi.y)
-    # plt.pause(5)
-    print(my_roi.x,my_roi.y)
-    print("curr axis", c_img)
+    curr_masked_img = plt.gca()
+    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[curr_ind]))
+    curr_masked_img_axis = curr_masked_img.imshow(image_folder[curr_ind])
+    my_roi_2 = RoiPoly(color="k", close_fig=False)
+    ### wait 5 or double click
+    plt.pause(5)
 
-    # c_img_axis = c_img.imshow(image_folder[8])
-    # plt.draw()
-    # plt.pause(5)
+    # my_roi_2.display_roi()
+    # plt.close(my_roi_2.fig)
+    print(my_roi_2.x,my_roi_2.y)
     #
-    # line = plt.Line2D(my_roi.x + [my_roi.x[0]], my_roi.y + [my_roi.y[0]],
-    #                   color=my_roi.color)
-    # ax = plt.gca()
-    # ax.add_line(line)
+    curr_mask = my_roi_2.get_mask(image_folder[curr_ind])
+    cp = image_folder[curr_ind].copy()
+    cp[curr_mask != 1] = 0
+    # c_img = plt.gca()
+    start_img_ind = curr_ind
+    curr_masked_img_axis = curr_masked_img.imshow(cp)
 
-    # print("line", line)
+    # confirm mask button
+    confirm_ax = plt.axes([0.81, 0.05, 0.1, 0.075])
+    confirm_button = Button(confirm_ax, 'Confirm')
+    confirm_button.on_clicked(confirm_roi)
+    confirm_button._button = confirm_button
+
+    restart_masking_ax = plt.axes([0.1, 0.05, 0.3, 0.075])
+    restart_masking_button = Button(restart_masking_ax,"Restart masking")
+    restart_masking_button.on_clicked(restart_masking)
+
     plt.draw()
-
+    return confirm_button
 def restart_masking(event):
     print("Restart started")
     # fg = plt.figure()
@@ -161,7 +167,7 @@ def restart_masking(event):
     print("Calling select_roi")
     global curr_masked_img_axis, curr_masked_img, curr_mask
     plt.clf()
-    make_new()
+    _ = make_new()
 
 def show_next_prev():
     global bnext, bprev, restart_masking_button
@@ -173,7 +179,7 @@ def show_next_prev():
     bprev.on_clicked(callback.prev)
     restart_masking_ax = plt.axes([0.1, 0.05, 0.3, 0.075])
     restart_masking_button = Button(restart_masking_ax,"Restart masking")
-    restart_masking_button.on_clicked(callback.show_original)
+    restart_masking_button.on_clicked(restart_masking)
     return bnext, bprev, restart_masking_button
 
 def confirm_roi(event):
@@ -185,7 +191,7 @@ def confirm_roi(event):
     # plt.cla()
     curr_masked_img.set_title("Choose next or redraw ROI for {}".format(f_date))
     # button to show next and prev masked images
-    show_next_prev()
+    _= show_next_prev()
 
 def show_first_image(start_index):
     # display first image with roi mask
@@ -198,16 +204,19 @@ def show_first_image(start_index):
     print("show first image END")
 
 def select_roi(start_img_ind):
-    global curr_masked_img_axis, curr_masked_img, curr_mask,image_folder, masked_images_list, my_roi
+    global curr_masked_img_axis, curr_masked_img, curr_mask,image_folder, masked_images_list, my_roi, curr_mask
     print("show first image start")
     show_first_image(start_img_ind)
     # pop up roi window
-    my_roi = RoiPoly(color = 'r')
+    my_roi = RoiPoly(color = 'k', close_fig=False)
     print("Trying to display roi")
-    my_roi.display_roi()
+    # my_roi.display_roi()
     print("End displaying roi")
+    plt.close(my_roi.fig)
+    # curr_masked_img = plt.gca()
+    # curr_masked_img.set_title("Confirm ROI? Date: {}".format(f_date))
+    # curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_img_ind])
     curr_mask = my_roi.get_mask(image_folder[start_img_ind])
-    del my_roi
     my_roi = RoiPoly(color="r", show_fig=False)
     copy_img = image_folder[start_img_ind].copy()
     copy_img[curr_mask!=1]=0

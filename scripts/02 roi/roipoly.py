@@ -23,6 +23,7 @@ def deprecation(message):
 
 class RoiPoly:
 
+
     def __init__(self, fig=None, ax=None, color='b',
                  roicolor=None, show_fig=True, close_fig=True):
         """
@@ -62,7 +63,7 @@ class RoiPoly:
         self.fig = fig
         self.ax = ax
         self.close_figure = close_fig
-
+        # print("ROIPOLY FROM directory")
         # Mouse event callbacks
         self.__cid1 = self.fig.canvas.mpl_connect(
             'motion_notify_event', self.__motion_notify_callback)

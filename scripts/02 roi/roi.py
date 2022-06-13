@@ -27,7 +27,7 @@ logging.basicConfig(format='%(levelname)s ''%(processName)-10s : %(asctime)s '
 
 
 # Create and format to obtain pixels
-im = cv2.imread(r"/Users/henrysun_1/Downloads/Test/07170143.JPG")
+im = cv2.imread(r"C:\Users\Dell\Downloads\Hbwtr_w3_20200315_115918.JPG")
 # change coloring to RGB scale
 im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
 img = np.array(im)
@@ -36,7 +36,7 @@ plt.imshow(img)
 
 # pop up roi window
 my_roi = roipoly(color='r')
-my_roi.display_roi()
+# my_roi.display_roi()
 # print("after display")
 
 # get mask array
