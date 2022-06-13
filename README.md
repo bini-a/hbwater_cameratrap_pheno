@@ -22,6 +22,7 @@ allow user to, while clicking through images, stop and create a new mask associa
 ~~organize the GitHub repo (remove uneeded scripts and standardize naming conventions, etc.)~~   | HS | **3**
 figure out our file hosting options: server, google drive, local files, etc.   | AT, WS | **3**
 after creating one ROI/mask, issue with subsequent ROIs/masks in same workflow    | ??? | **3**
+
 matplotlib and interactive matplotlib issues on Mac OS  | HS, BG, HO | **3**
 ~~more prominent and better date show on each image slide~~ | HO | **3**
 
