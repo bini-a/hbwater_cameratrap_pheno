@@ -69,6 +69,7 @@ class RoiPoly:
             'motion_notify_event', self.__motion_notify_callback)
         self.__cid2 = self.fig.canvas.mpl_connect(
             'button_press_event', self.__button_press_callback)
+        ## checks for left mouse double click or right mouse click
         self.dbl_clicked = False
 
         if show_fig:
