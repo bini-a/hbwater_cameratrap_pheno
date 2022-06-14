@@ -95,7 +95,7 @@ class RoiPoly:
         numpy array (2D)
         """
 
-        print("Image Shape", np.shape(image))
+        # print("Image Shape", np.shape(image))
         if len(np.shape(image)) ==3:
             ny, nx, nz = np.shape(image)
         else:
@@ -109,7 +109,7 @@ class RoiPoly:
         points = np.vstack((x, y)).T
         roi_path = MplPath(poly_verts)
         mask = roi_path.contains_points(points).reshape((ny, nx))
-        print(mask)
+        # print(mask)
         return mask
 
     def display_roi(self, **linekwargs):
