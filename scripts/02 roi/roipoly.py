@@ -105,12 +105,12 @@ class RoiPoly:
         # (<0,0> is at the top left of the grid in this system)
         x, y= np.meshgrid(np.arange(nx), np.arange(ny))
         x, y = x.flatten(), y.flatten()
-        points = np.vstack((x, y)).T       
+        points = np.vstack((x, y)).T
         roi_path = MplPath(poly_verts)
         mask = roi_path.contains_points(points).reshape((ny, nx))
         print(mask)
         return mask
-        
+
     def display_roi(self, **linekwargs):
         line = plt.Line2D(self.x + [self.x[0]], self.y + [self.y[0]],
                           color=self.color, **linekwargs)
