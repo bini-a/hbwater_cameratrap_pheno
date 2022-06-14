@@ -5,43 +5,36 @@ Created on Mon Jun  6 14:46:12 2022
 @author: Dell
 """
 
+import re
 import matplotlib as mpl
+
 mpl.use('Qt5Agg')  # backend for windows
-# mpl.use('TkAgg') # backend for mac
-
-# TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
-# TODO docstrings, create folder to store masks, dataframe to store metadata about images + masks
-
 import cv2
 from roipoly import RoiPoly
 import glob2
-import logging
-import os
-import sys
-import logging
-import warnings
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
 
-#### sample image local folder
-image_folder = sorted(glob2.glob(r"/Users/henrysun_1/Downloads/W9 GC Channel 3-16-20 thru 11-5-20/*"))
-date_list = []
-for filename in image_folder:
-    date_list.append(filename[-19:-11])
-    if filename[-4:].lower() != ".jpg":
-        image_folder.remove(filename)
-f_date = date_list[0]
-# print(f_date)
-# print("Date List", date_list)
-# print("Image Folder ", image_folder)
+# TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
+# TODO docstrings, create folder to store masks, dataframe to store metadata about images + masks, last button to close window and save all images to file directory
+
+
+
 """Draw polygon regions of interest (ROIs) in matplotlib images,
 similar to Matlab's roipoly function.
 """
 
-logger = logging.getLogger(__name__)
-warnings.simplefilter('always', DeprecationWarning)
+#### sample image local folder
+image_folder = glob2.glob(r"C:/Users/Dell/Downloads/W1/*")
+date_list = []
+date_pattern = "\d{8}"  # eg 12-12-2020
+
+for filename in image_folder:
+    if filename[-4:].lower() != ".jpg":
+        image_folder.remove(filename)
+    else:
+        date_list.append(re.search(date_pattern, filename).group(0))
 
 masked_images_list = None
 start_img_ind = 0
@@ -53,20 +46,19 @@ bprev = None
 restart_masking_button = None
 my_roi = RoiPoly(color='r', show_fig=False)
 confirm_button = None
-
-
+# plot width and height
+w = 6
+h = 6
 class Index:
     ind = 0
-
     def get_curr_index(self):
         return self.ind
-
     def next(self, event):
         self.ind += 1
         # ax.clear()
         # ax.imshow(li[self.ind])
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
-        curr_masked_img.set_title(f"Next selected, click next or draw new ROI for Date: {date_list[self.ind]}")
+        curr_masked_img.set_title("Click next or draw new ROI for Date: {}".format(date_list[self.ind]))
         plt.draw()
 
     def prev(self, event):
@@ -74,19 +66,12 @@ class Index:
         # print("EQUAL?", image_folder==masked_images_list)
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
         curr_masked_img.set_title(
-            f"Previous selected, click next or draw new ROI for Date: {date_list[self.ind]}")
-        print(self.get_curr_index())
+            "Click next or draw new ROI for Date: {}".format(date_list[self.ind]))
+        # print(self.get_curr_index())
         plt.draw()
 
-    # def restart(self,event):
-    #     plt.clf()
-    #     curr_masked_img = plt.gca()
-    #     curr_masked_img.set_title("Confirm ROI?")
-    #     curr_masked_img_axis = curr_masked_img.imshow(image_folder[self.ind])
-    #     # curr_masked_img_axis.set_data(image_folder[self.ind])
-    #     # plt.draw()
     def show_original(self, event):
-        print("Showing original + ROI line")
+        # print("Showing original + ROI line")
 
         curr_masked_img_axis.set_data(image_folder[self.ind])
         plt.draw()
@@ -97,46 +82,37 @@ def read_img(path):
     # change coloring to RGB scale
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     img = np.array(im)
+    #TODO ISSUE Image resampling for fast display
     return img[::2, ::2]
 
 
 def mask_items_folder():
-    # print("2. EQUAL?", image_folder[0] == masked_images_list[0])
-
-    # print("Started masking")
-    # print("mask_length",len(masked_images_list))
     for i in range(start_img_ind, len(masked_images_list)):
         curr_image = image_folder[i].copy()
         curr_image[curr_mask != 1] = 0
-
         masked_images_list[i] = curr_image
-    # print("Finished masking starting from index", start_img_ind)
-    # print("3. EQUAL?", image_folder==masked_images_list)
-
 
 def make_new():
     global my_roi, confirm_button, curr_masked_img_axis, curr_masked_img, curr_mask, start_img_ind, restart_masking_button
-
     fg_2 = plt.gcf()
     fg_2.subplots_adjust(left=0.3, bottom=0.25)
+    fg_2.set_size_inches(w, h, forward=True)
+
     curr_ind = callback.get_curr_index()
     # change the content of image on curr axis
     curr_masked_img = plt.gca()
-    curr_masked_img.set_title(f"Confirm ROI? Date: {date_list[curr_ind]}")
+    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[curr_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[curr_ind])
     my_roi_2 = RoiPoly(color="r", close_fig=False)
-    ### wait 5 or double click
-    # plt.pause(5)
+
     while not my_roi_2.dbl_clicked:
         plt.pause(0.01)
-    # my_roi_2.display_roi()
-    # plt.close(my_roi_2.fig)
-    print(my_roi_2.x, my_roi_2.y)
-    #
+
+    # print(my_roi_2.x, my_roi_2.y)
+
     curr_mask = my_roi_2.get_mask(image_folder[curr_ind])
     cp = image_folder[curr_ind].copy()
     cp[curr_mask != 1] = 0
-    # c_img = plt.gca()
     start_img_ind = curr_ind
     curr_masked_img_axis = curr_masked_img.imshow(cp)
 
@@ -155,17 +131,16 @@ def make_new():
 
 
 def restart_masking(event):
-    print("Restart started")
-    # fg = plt.figure()
+    # print("Restart started")
     curr_ind = callback.get_curr_index()
-    print("Calling select_roi")
-    global curr_masked_img_axis, curr_masked_img, curr_mask
+    # print("Calling select_roi")
     plt.clf()
     _ = make_new()
 
 
 def show_next_prev():
     global bnext, bprev, restart_masking_button
+
     axprev = plt.axes([0.7, 0.05, 0.1, 0.075])
     axnext = plt.axes([0.81, 0.05, 0.1, 0.075])
     bnext = Button(axnext, 'Next')
@@ -179,13 +154,12 @@ def show_next_prev():
 
 
 def confirm_roi(event):
-    print("Confirmed")
+    # print("Confirmed")
 
     # mask all images starting from start_img_ind index
     mask_items_folder()
 
-    # plt.cla()
-    curr_masked_img.set_title(f"Choose next or redraw ROI for {date_list[callback.get_curr_index()]}")
+    curr_masked_img.set_title("Choose next or redraw ROI for {}".format(date_list[start_img_ind]))
     # button to show next and prev masked images
     _ = show_next_prev()
 
@@ -196,34 +170,32 @@ def show_first_image(start_index):
     global curr_masked_img_axis, curr_masked_img
     curr_masked_img = plt.gca()
 
-    curr_masked_img.set_title(f"Select ROI  Date: {f_date}")
+    curr_masked_img.set_title("Select ROI  Date: {}".format(date_list[start_img_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_index])
-    print("show first image END")
+    # print("show first image END")
 
 
 def select_roi(start_img_ind):
     global curr_masked_img_axis, curr_masked_img, curr_mask, image_folder, masked_images_list, my_roi, curr_mask
-    print("show first image start")
+    # print("show first image start")
     show_first_image(start_img_ind)
     # pop up roi window
     my_roi = RoiPoly(color='r', close_fig=False)
-    print("Trying to display roi")
-    # my_roi.display_roi()
-    print("End displaying roi")
+    my_roi.display_roi()
+    # print("End displaying roi")
     plt.close(my_roi.fig)
-    # curr_masked_img = plt.gca()
-    # curr_masked_img.set_title("Confirm ROI? Date: {}".format(f_date))
-    # curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_img_ind])
+
     curr_mask = my_roi.get_mask(image_folder[start_img_ind])
     copy_img = image_folder[start_img_ind].copy()
     copy_img[curr_mask != 1] = 0
     # display first image with roi mask
     fg = plt.gcf()
     fg.subplots_adjust(left=0.3, bottom=0.25)
+    fg.set_size_inches(w, h, forward=True)
 
     # change the content of image on curr axis
     curr_masked_img = plt.gca()
-    curr_masked_img.set_title(f"Confirm ROI? Date: {f_date}")
+    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[start_img_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(copy_img)
 
     # confirm mask button
@@ -239,12 +211,15 @@ callback = Index()
 
 # read all images
 image_folder = [read_img(im) for im in image_folder[:10]]
-
+# make masked images list
 masked_images_list = image_folder.copy()
+# first plot
 fg = plt.gcf()
 fg.subplots_adjust(left=0.35, bottom=0.25)
+fg.set_size_inches(w, h, forward=True)
+
 # collect roi from image + confirm button
 select_roi_ret = select_roi(start_img_ind)
-_ = select_roi_ret[0]
+
 
 plt.show()
