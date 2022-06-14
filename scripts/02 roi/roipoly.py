@@ -69,6 +69,7 @@ class RoiPoly:
             'motion_notify_event', self.__motion_notify_callback)
         self.__cid2 = self.fig.canvas.mpl_connect(
             'button_press_event', self.__button_press_callback)
+        self.dbl_clicked = False
 
         if show_fig:
             self.show_figure()
@@ -104,12 +105,12 @@ class RoiPoly:
         # (<0,0> is at the top left of the grid in this system)
         x, y= np.meshgrid(np.arange(nx), np.arange(ny))
         x, y = x.flatten(), y.flatten()
-        points = np.vstack((x, y)).T       
+        points = np.vstack((x, y)).T
         roi_path = MplPath(poly_verts)
         mask = roi_path.contains_points(points).reshape((ny, nx))
         print(mask)
         return mask
-        
+
     def display_roi(self, **linekwargs):
         line = plt.Line2D(self.x + [self.x[0]], self.y + [self.y[0]],
                           color=self.color, **linekwargs)
@@ -205,6 +206,7 @@ class RoiPoly:
             elif (((event.button == 1 and event.dblclick) or
                    (event.button == 3 and not event.dblclick)) and
                   self.line is not None):
+                self.dbl_clicked = True
                 # Close the loop and disconnect
                 logger.debug("Received single right mouse button click or "
                              "double left click")
