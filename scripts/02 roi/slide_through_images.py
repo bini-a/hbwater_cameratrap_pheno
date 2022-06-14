@@ -14,6 +14,7 @@ import matplotlib as mpl
 mpl.use('Qt5Agg')  # backend for windows
 
 # TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
+# TODO docstrings, create folder to store masks, dataframe to store metadata about images + masks
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -82,7 +83,7 @@ class Index:
         # ax.clear()
         # ax.imshow(li[self.ind])
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
-        curr_masked_img.set_title("Next selected, click next or draw new ROI for Date: {}".format(date_list[self.ind]))
+        curr_masked_img.set_title(f"Next selected, click next or draw new ROI for Date: {date_list[self.ind]}")
         plt.draw()
 
     def prev(self, event):
@@ -90,7 +91,7 @@ class Index:
         # print("EQUAL?", image_folder==masked_images_list)
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
         curr_masked_img.set_title(
-            "Previous selected, click next or draw new ROI for Date: {}".format(date_list[self.ind]))
+            f"Previous selected, click next or draw new ROI for Date: {date_list[self.ind]}")
         print(self.get_curr_index())
         plt.draw()
 
@@ -138,7 +139,7 @@ def make_new():
     curr_ind = callback.get_curr_index()
     # change the content of image on curr axis
     curr_masked_img = plt.gca()
-    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[curr_ind]))
+    curr_masked_img.set_title(f"Confirm ROI? Date: {date_list[curr_ind]}")
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[curr_ind])
     my_roi_2 = RoiPoly(color="r", close_fig=False)
     ### wait 5 or double click
@@ -201,7 +202,7 @@ def confirm_roi(event):
     mask_items_folder()
 
     # plt.cla()
-    curr_masked_img.set_title("Choose next or redraw ROI for {}".format(f_date))
+    curr_masked_img.set_title(f"Choose next or redraw ROI for {date_list[callback.get_curr_index()]}")
     # button to show next and prev masked images
     _ = show_next_prev()
 
@@ -212,7 +213,7 @@ def show_first_image(start_index):
     global curr_masked_img_axis, curr_masked_img
     curr_masked_img = plt.gca()
 
-    curr_masked_img.set_title("Select ROI  Date: {}".format(f_date))
+    curr_masked_img.set_title(f"Select ROI  Date: {f_date}")
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_index])
     print("show first image END")
 
@@ -239,7 +240,7 @@ def select_roi(start_img_ind):
 
     # change the content of image on curr axis
     curr_masked_img = plt.gca()
-    curr_masked_img.set_title("Confirm ROI? Date: {}".format(f_date))
+    curr_masked_img.set_title(f"Confirm ROI? Date: {f_date}")
     curr_masked_img_axis = curr_masked_img.imshow(copy_img)
 
     # confirm mask button
