@@ -4,26 +4,30 @@ Created on Mon Jun  6 14:46:12 2022
 
 @author: Dell
 """
-# TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
-#Import necessarry packages
+
 import matplotlib as mpl
 mpl.use('Qt5Agg')  # backend for windows
 # mpl.use('TkAgg') # backend for mac
+
+# TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
+
 import cv2
 from roipoly import RoiPoly
 import glob2
 import logging
+import os
+import sys
+import logging
 import warnings
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.path import Path as MplPath
 from matplotlib.widgets import Button
 
 #### sample image local folder
-image_folder = sorted(glob2.glob(r"/Users/hecon/Desktop/WCTEST/*"))
-#### sample date list
+image_folder = sorted(glob2.glob(r"/Users/henrysun_1/Downloads/W9 GC Channel 3-16-20 thru 11-5-20/*"))
 date_list = []
 for filename in image_folder:
-    #this assumes each image is properly named as per rename script standards
     date_list.append(filename[-19:-11])
     if filename[-4:].lower() != ".jpg":
         image_folder.remove(filename)
@@ -37,7 +41,7 @@ similar to Matlab's roipoly function.
 
 logger = logging.getLogger(__name__)
 warnings.simplefilter('always', DeprecationWarning)
-#Global variables
+
 masked_images_list = None
 start_img_ind = 0
 curr_mask = None
@@ -49,7 +53,7 @@ restart_masking_button = None
 my_roi = RoiPoly(color='r', show_fig=False)
 confirm_button = None
 
-#Callback function that displays buttons
+
 class Index:
     ind = 0
 
@@ -68,7 +72,8 @@ class Index:
         self.ind -= 1
         # print("EQUAL?", image_folder==masked_images_list)
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
-        curr_masked_img.set_title("Previous selected, click next or draw new ROI for Date: {}".format(date_list[self.ind]))
+        curr_masked_img.set_title(
+            "Previous selected, click next or draw new ROI for Date: {}".format(date_list[self.ind]))
         print(self.get_curr_index())
         plt.draw()
 
@@ -92,6 +97,7 @@ def read_img(path):
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     img = np.array(im)
     return img[::2, ::2]
+
 
 def mask_items_folder():
     # print("2. EQUAL?", image_folder[0] == masked_images_list[0])
@@ -176,9 +182,9 @@ def confirm_roi(event):
 
     # mask all images starting from start_img_ind index
     mask_items_folder()
-    curr_ind = callback.get_curr_index()
+
     # plt.cla()
-    curr_masked_img.set_title("Choose next or redraw ROI for {}".format(date_list[curr_ind]))
+    curr_masked_img.set_title("Choose next or redraw ROI for {}".format(f_date))
     # button to show next and prev masked images
     _ = show_next_prev()
 
