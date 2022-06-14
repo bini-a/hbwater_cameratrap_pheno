@@ -19,7 +19,8 @@ Tasks | People | Step
 ~~continue debugging the GDrive image copy/rename/organization scripts~~| BG, HS | **1**
 ~~figure out how to show mask on consecutive images (clicking thru all the images from a particular watershed year)~~ | HO, BG | **2**
 ~~allow user to, while clicking through images, stop and create a new mask associated with the date of that image/~~  | HO, BG, HS | **2**
-create dataframe/file structure for masked images in ROI script | HO, BG, HS | **2**
+create folder for masked images && masks (w/o images) in ROI script | HO, BG, HS | **2**
+scale masks to original resolution of the image for later use| HO, BG, HS | **3**
 ~~organize the GitHub repo (remove uneeded scripts and standardize naming conventions, etc.)~~   | HS | **3**
 ~~matplotlib and interactive matplotlib issues on Mac OS~~  | HS, BG, HO | **3**
 ~~more prominent and better date show on each image slide~~ | HO | **3**
@@ -39,6 +40,7 @@ export Jupyter notebook to *.py* files  | XX | **8**
 While the above steps are roughly in order, we will be working on certain aspects of the project throughout, such as:
   - Keeping all code well-documented and clean
   - Creating Jupyter notebooks for each script with embedded markdown/html that explains each step of the script
+  - Determining a final product to make data pipeline easily accessible to average scientist
 
 
 ## Progress
