@@ -15,7 +15,7 @@ import glob2
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
-
+from collections import OrderedDict
 # TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
 # TODO docstrings, create folder to store masks, dataframe to store metadata about images + masks, last button to close window and save all images to file directory
 
@@ -26,16 +26,28 @@ similar to Matlab's roipoly function.
 """
 
 #### sample image local folder
-image_folder = glob2.glob(r"C:/Users/Dell/Downloads/W1/*")
+image_folder = glob2.glob(r"/Users/hecon/Desktop/WCTEST/*")
 date_list = []
+date_listt = []
 date_pattern = "\d{8}"  # eg 12-12-2020
-
+mask_dictionary = OrderedDict()  #Key is date range used, value is mask
 for filename in image_folder:
     if filename[-4:].lower() != ".jpg":
         image_folder.remove(filename)
     else:
         date_list.append(re.search(date_pattern, filename).group(0))
-
+for dat in date_list:
+    dd = dat[-2:]
+    mm = dat[-4:-2]
+    yy = dat[-8:-4]
+    dat = mm+'/'+dd+'/'+yy
+    date_listt.append(dat)
+print("Date List ,", date_list)
+print("Date Listy ,",date_listt)
+date_imgpath_dic = OrderedDict()
+for x in range(len(date_listt)):
+    date_imgpath_dic[date_list[x]] = image_folder[x]
+print(date_imgpath_dic)
 masked_images_list = None
 start_img_ind = 0
 curr_mask = None
@@ -51,6 +63,7 @@ w = 6
 h = 6
 class Index:
     ind = 0
+
     def get_curr_index(self):
         return self.ind
     def next(self, event):
@@ -58,7 +71,7 @@ class Index:
         # ax.clear()
         # ax.imshow(li[self.ind])
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
-        curr_masked_img.set_title("Click next or draw new ROI for Date: {}".format(date_list[self.ind]))
+        curr_masked_img.set_title("Click next or draw new ROI for Date: {}".format(date_listt[self.ind]))
         plt.draw()
 
     def prev(self, event):
@@ -66,7 +79,7 @@ class Index:
         # print("EQUAL?", image_folder==masked_images_list)
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
         curr_masked_img.set_title(
-            "Click next or draw new ROI for Date: {}".format(date_list[self.ind]))
+            "Click next or draw new ROI for Date: {}".format(date_listt[self.ind]))
         # print(self.get_curr_index())
         plt.draw()
 
@@ -101,7 +114,7 @@ def make_new():
     curr_ind = callback.get_curr_index()
     # change the content of image on curr axis
     curr_masked_img = plt.gca()
-    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[curr_ind]))
+    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_listt[curr_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[curr_ind])
     my_roi_2 = RoiPoly(color="r", close_fig=False)
 
@@ -111,6 +124,7 @@ def make_new():
     # print(my_roi_2.x, my_roi_2.y)
 
     curr_mask = my_roi_2.get_mask(image_folder[curr_ind])
+    mask_dictionary[date_listt[callback.get_curr_index()]] = curr_mask
     cp = image_folder[curr_ind].copy()
     cp[curr_mask != 1] = 0
     start_img_ind = curr_ind
@@ -159,7 +173,7 @@ def confirm_roi(event):
     # mask all images starting from start_img_ind index
     mask_items_folder()
 
-    curr_masked_img.set_title("Choose next or redraw ROI for {}".format(date_list[start_img_ind]))
+    curr_masked_img.set_title("Choose next or redraw ROI for {}".format(date_listt[start_img_ind]))
     # button to show next and prev masked images
     _ = show_next_prev()
 
@@ -170,7 +184,7 @@ def show_first_image(start_index):
     global curr_masked_img_axis, curr_masked_img
     curr_masked_img = plt.gca()
 
-    curr_masked_img.set_title("Select ROI  Date: {}".format(date_list[start_img_ind]))
+    curr_masked_img.set_title("Select ROI  Date: {}".format(date_listt[start_img_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_index])
     # print("show first image END")
 
@@ -186,6 +200,7 @@ def select_roi(start_img_ind):
     plt.close(my_roi.fig)
 
     curr_mask = my_roi.get_mask(image_folder[start_img_ind])
+    mask_dictionary[date_listt[callback.get_curr_index()]] = curr_mask
     copy_img = image_folder[start_img_ind].copy()
     copy_img[curr_mask != 1] = 0
     # display first image with roi mask
@@ -195,7 +210,7 @@ def select_roi(start_img_ind):
 
     # change the content of image on curr axis
     curr_masked_img = plt.gca()
-    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_list[start_img_ind]))
+    curr_masked_img.set_title("Confirm ROI? Date: {}".format(date_listt[start_img_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(copy_img)
 
     # confirm mask button
@@ -223,3 +238,5 @@ select_roi_ret = select_roi(start_img_ind)
 
 
 plt.show()
+
+print(" mask dic ,{}".format(mask_dictionary))
