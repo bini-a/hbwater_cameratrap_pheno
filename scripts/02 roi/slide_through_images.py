@@ -5,10 +5,10 @@ Created on Mon Jun  6 14:46:12 2022
 @author: Dell
 """
 
-import re
 import matplotlib as mpl
 
 mpl.use('Qt5Agg')  # backend for windows
+import re
 import cv2
 from roipoly import RoiPoly
 import glob2
@@ -16,6 +16,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 from collections import OrderedDict
+# import os
 # TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
 # TODO docstrings, create folder to store masks, dataframe to store metadata about images + masks, last button to close window and save all images to file directory
 
@@ -26,7 +27,7 @@ similar to Matlab's roipoly function.
 """
 
 #### sample image local folder
-image_folder = glob2.glob(r"/Users/hecon/Desktop/WCTEST/*")
+image_folder = glob2.glob(r"/Users/henrysun_1/Downloads/W9 GC Channel 3-16-20 thru 11-5-20/*")
 date_list = []
 date_listt = []
 date_pattern = "\d{8}"  # eg 12-12-2020
@@ -42,12 +43,12 @@ for dat in date_list:
     yy = dat[-8:-4]
     dat = mm+'/'+dd+'/'+yy
     date_listt.append(dat)
-print("Date List ,", date_list)
-print("Date Listy ,",date_listt)
+# print("Date List ,", date_list)
+print("Date List ", date_listt)
 date_imgpath_dic = OrderedDict()
 for x in range(len(date_listt)):
     date_imgpath_dic[date_list[x]] = image_folder[x]
-print(date_imgpath_dic)
+# print(date_imgpath_dic)
 masked_images_list = None
 start_img_ind = 0
 curr_mask = None
@@ -73,6 +74,8 @@ class Index:
         curr_masked_img_axis.set_data(masked_images_list[self.ind])
         curr_masked_img.set_title("Click next or draw new ROI for Date: {}".format(date_listt[self.ind]))
         plt.draw()
+
+        #savefig here
 
     def prev(self, event):
         self.ind -= 1
@@ -105,7 +108,9 @@ def mask_items_folder():
         curr_image[curr_mask != 1] = 0
         masked_images_list[i] = curr_image
 
+
 def make_new():
+    num_masks = 0
     global my_roi, confirm_button, curr_masked_img_axis, curr_masked_img, curr_mask, start_img_ind, restart_masking_button
     fg_2 = plt.gcf()
     fg_2.subplots_adjust(left=0.3, bottom=0.25)
@@ -144,12 +149,14 @@ def make_new():
     return confirm_button
 
 
+
 def restart_masking(event):
     # print("Restart started")
     curr_ind = callback.get_curr_index()
     # print("Calling select_roi")
     plt.clf()
     _ = make_new()
+
 
 
 def show_next_prev():
@@ -184,7 +191,7 @@ def show_first_image(start_index):
     global curr_masked_img_axis, curr_masked_img
     curr_masked_img = plt.gca()
 
-    curr_masked_img.set_title("Select ROI  Date: {}".format(date_listt[start_img_ind]))
+    curr_masked_img.set_title("Select ROI Date: {}".format(date_listt[start_img_ind]))
     curr_masked_img_axis = curr_masked_img.imshow(image_folder[start_index])
     # print("show first image END")
 
@@ -239,4 +246,13 @@ select_roi_ret = select_roi(start_img_ind)
 
 plt.show()
 
-print(" mask dic ,{}".format(mask_dictionary))
+
+print(" mask dic, {}".format(mask_dictionary))
+mask_num_list = []
+mask_num = 0
+for i in range(len(image_folder)):
+    if date_listt[i] in mask_dictionary:
+        mask_num += 1
+        mask_num_list.append("Mask" + str(mask_num))
+mask_num_dict = dict(zip(mask_num_list, list(mask_dictionary.values())))
+print(mask_num_dict)
