@@ -102,6 +102,7 @@ class RoiPoly:
             ny, nx = np.shape(image)
         poly_verts = ([(self.x[0], self.y[0])]
                       + list(zip(reversed(self.x), reversed(self.y))))
+
         # Create vertex coordinates for each grid cell...
         # (<0,0> is at the top left of the grid in this system)
         x, y= np.meshgrid(np.arange(nx), np.arange(ny))
@@ -110,7 +111,7 @@ class RoiPoly:
         roi_path = MplPath(poly_verts)
         mask = roi_path.contains_points(points).reshape((ny, nx))
         # print(mask)
-        return mask
+        return mask, poly_verts
 
     def display_roi(self, **linekwargs):
         line = plt.Line2D(self.x + [self.x[0]], self.y + [self.y[0]],
