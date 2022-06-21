@@ -25,7 +25,7 @@ scale masks to original resolution of the image for later use| HO, BG, HS | **3*
 ~~matplotlib and interactive matplotlib issues on Mac OS~~  | HS, BG, HO | **3**
 ~~more prominent and better date show on each image slide~~ | HO | **3**
 figure out our file hosting options: server, google drive, local files, etc.   | AT, WS | **3**
-prepare presentation for 6/21   | HS, BG, HO | **Other**
+~~prepare presentation for 6/21~~   | HS, BG, HO | **Other**
 
 
 
@@ -45,7 +45,7 @@ While the above steps are roughly in order, we will be working on certain aspect
 
 ## Progress
 - Figured out how to click through image files with mask applied
-- Working on redrawing ROI and applying new mask to remaining images
+- Figured outredrawing ROI and applying new mask to remaining images
 - Working on file naming conventions/organizing GitHub
 
 
