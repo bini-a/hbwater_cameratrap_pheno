@@ -1,3 +1,0 @@
-# Classifying Image Attributes with VIA
-
-TBA
