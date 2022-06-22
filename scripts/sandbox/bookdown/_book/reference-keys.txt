@@ -1,6 +1,0 @@
-about-this-book
-load-packages
-introduction
-chapter-1-renaming-raw-images
-chapter-2-selecting-region-of-interest
-chapter-3-classifying-image-attributes-with-via
