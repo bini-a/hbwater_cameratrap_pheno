@@ -1,0 +1,31 @@
+---
+title: "A Guide to Raw Image Processing"
+author: "Henry Sun"
+date: '2022-06-22'
+site: "bookdown::bookdown_site"
+output:
+  bookdown::pdf_book:
+    keep_tex: true
+  bookdown::html_book:
+  #css: toc.css
+  css: style.css
+---
+
+```{r echo = FALSE}
+# build the book
+bookdown::render_book("index.Rmd", "bookdown::gitbook")
+```
+
+
+# About this book
+
+
+## Load Packages
+
+```{r}
+library(bookdown)
+library(reticulate)
+```
+
+
+## Introduction 
