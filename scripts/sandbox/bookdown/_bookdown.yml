@@ -1,6 +1,9 @@
-book_filename: "my-book.Rmd"
+book_filename: "An Image Processing Pipeline and Classification with Machine Learning.Rmd"
 delete_merged_file: true
 edit: https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/%s
 view: https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/%s
 clean: ["my-book.bbl", "R-packages.bib"]
 output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Chapter "

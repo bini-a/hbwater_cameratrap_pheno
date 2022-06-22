@@ -10,6 +10,11 @@ output:
     keep_tex: yes
 ---
 
+```{r echo = FALSE}
+# bookdown::render_book("index.Rmd", "bookdown::gitbook")
+```
+
+
 # About this book
 
 This book was authored to serve as a basic guide for using the data pipeline to
