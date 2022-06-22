@@ -13,3 +13,4 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Website
+WebsitePath: ~/Documents/GitHub/hbwater_cameratrap_pheno/scripts/sandbox/bookdown
