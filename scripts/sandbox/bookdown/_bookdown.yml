@@ -1,0 +1,5 @@
+book_filename: "my-book.Rmd"
+delete_merged_file: true
+edit: https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/%s
+view: https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/%s
+clean: ["my-book.bbl", "R-packages.bib"]
