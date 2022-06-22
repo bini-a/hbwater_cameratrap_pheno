@@ -20,7 +20,7 @@
   
   
 
-<meta name="author" content="Henry Sun" />
+<meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
 <meta name="date" content="2022-06-22" />
@@ -32,15 +32,15 @@
   
 
 
-<script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -49,9 +49,9 @@
 
 
 
-<link href="assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -134,10 +134,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this book</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="load-packages.html"><a href="load-packages.html"><i class="fa fa-check"></i><b>1.1</b> Load Packages</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#load-packages"><i class="fa fa-check"></i><b>1.1</b> Load Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.2</b> Introduction</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-1-renaming-raw-images.html"><a href="chapter-1-renaming-raw-images.html"><i class="fa fa-check"></i><b>2</b> Chapter 1: Renaming Raw Images</a></li>
+<li class="chapter" data-level="3" data-path="chapter-2-selecting-region-of-interest.html"><a href="chapter-2-selecting-region-of-interest.html"><i class="fa fa-check"></i><b>3</b> Chapter 2: Selecting Region of Interest</a></li>
+<li class="chapter" data-level="4" data-path="chapter-3-classifying-image-attributes-with-via.html"><a href="chapter-3-classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>4</b> Chapter 3: Classifying Image Attributes with VIA</a></li>
 </ul>
 
       </nav>
@@ -170,14 +172,14 @@ the table of contents to find the page you are looking for.</p>
 
     </div>
   </div>
-<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -198,27 +200,24 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/%s",
+"text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
 "view": {
-"link": null,
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/%s",
 "text": null
 },
-"download": ["_main.pdf"],
+"download": ["my-book.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
 "collapse": "subsection"
-},
-"toolbar": {
-"position": "static"
 }
 });
 });

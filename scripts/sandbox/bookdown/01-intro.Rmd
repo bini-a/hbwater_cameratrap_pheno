@@ -1,4 +1,4 @@
-# Chapter 1: Renaming Raw Images
+# Renaming Raw Images
 
 This chapter provides an overview about the Python scripts used to give 
-descriptive filenames to raw images.
+descriptive file names to raw images.

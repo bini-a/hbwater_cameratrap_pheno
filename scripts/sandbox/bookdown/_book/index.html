@@ -20,7 +20,7 @@
   
   
 
-<meta name="author" content="Henry Sun" />
+<meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
 <meta name="date" content="2022-06-22" />
@@ -31,16 +31,16 @@
   
   
 
-<link rel="next" href="load-packages.html"/>
-<script src="assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link rel="next" href="chapter-1-renaming-raw-images.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -49,9 +49,9 @@
 
 
 
-<link href="assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -134,10 +134,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this book</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="load-packages.html"><a href="load-packages.html"><i class="fa fa-check"></i><b>1.1</b> Load Packages</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#load-packages"><i class="fa fa-check"></i><b>1.1</b> Load Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.2</b> Introduction</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-1-renaming-raw-images.html"><a href="chapter-1-renaming-raw-images.html"><i class="fa fa-check"></i><b>2</b> Chapter 1: Renaming Raw Images</a></li>
+<li class="chapter" data-level="3" data-path="chapter-2-selecting-region-of-interest.html"><a href="chapter-2-selecting-region-of-interest.html"><i class="fa fa-check"></i><b>3</b> Chapter 2: Selecting Region of Interest</a></li>
+<li class="chapter" data-level="4" data-path="chapter-3-classifying-image-attributes-with-via.html"><a href="chapter-3-classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>4</b> Chapter 3: Classifying Image Attributes with VIA</a></li>
 </ul>
 
       </nav>
@@ -157,11 +159,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">A Guide to Raw Image Processing</h1>
-<p class="author"><em>Henry Sun</em></p>
+<p class="author"><em>Henry Sun, Biniam Garomsa, Hector Ontiveros</em></p>
 <p class="date"><em>2022-06-22</em></p>
 </div>
 <div id="about-this-book" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> About this book<a href="index.html#about-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This book was authored to serve as a basic guide for using the data pipeline to
+process raw images using ROI software, VIA image annotation, and a machine
+learning model.</p>
+<p>Special thanks to Audrey Thellman and Wes Slaughter for their guidance and
+mentorship.</p>
+<div id="load-packages" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Load Packages<a href="index.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bookdown) </span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Knits markdown files into a book</span></span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Allows python code to be ran in an R environment</span></span></code></pre></div>
+</div>
+<div id="introduction" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
 </div>
             </section>
 
@@ -169,17 +187,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="load-packages.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-1-renaming-raw-images.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
-<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -200,27 +218,24 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/index.rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
 "view": {
-"link": null,
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/index.rmd",
 "text": null
 },
-"download": ["_main.pdf"],
+"download": ["my-book.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
 "collapse": "subsection"
-},
-"toolbar": {
-"position": "static"
 }
 });
 });
