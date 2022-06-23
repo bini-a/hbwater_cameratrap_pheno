@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Guide to Raw Image Processing</title>
-  <meta name="description" content="A Guide to Raw Image Processing" />
+  <title>A Guide to an Image Processing Pipeline and Classification with Machine Learning</title>
+  <meta name="description" content="A Guide to an Image Processing Pipeline and Classification with Machine Learning" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Guide to Raw Image Processing" />
+  <meta property="og:title" content="A Guide to an Image Processing Pipeline and Classification with Machine Learning" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Guide to Raw Image Processing" />
+  <meta name="twitter:title" content="A Guide to an Image Processing Pipeline and Classification with Machine Learning" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-06-22" />
+<meta name="date" content="2022-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Guide to Raw Image Processing</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Guide to an Image Processing Pipeline and Classification with Machine Learning</a>
           </h1>
         </div>
 
@@ -161,16 +161,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">A Guide to Raw Image Processing</h1>
+<h1 class="title">A Guide to an Image Processing Pipeline and Classification with Machine Learning</h1>
 <p class="author"><em>Henry Sun, Biniam Garomsa, Hector Ontiveros</em></p>
-<p class="date"><em>2022-06-22</em></p>
+<p class="date"><em>2022-06-23</em></p>
 </div>
 <div id="about-this-book" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> About this book<a href="index.html#about-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This book was authored to serve as a basic guide for using the data pipeline to
 process raw images using ROI software, VIA image annotation, and a machine
 learning model.</p>
-<p>Special thanks to Audrey Thellman and Wes Slaughter for their guidance and
+<p>Special thanks to Audrey Thellman and Weston Slaughter for their guidance and
 mentorship.</p>
 <div id="load-packages" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Load Packages<a href="index.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -181,6 +181,8 @@ mentorship.</p>
 </div>
 <div id="introduction" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. Our teams images are those from the Hubbard Brook Experimental Forest in New Hampshire, United States. Nine camera traps in as many watersheds have collected images daily for three years, from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product.</p>
+<p>Our software can however be viably used for any class of field imagery and classification.</p>
 
 </div>
 </div>

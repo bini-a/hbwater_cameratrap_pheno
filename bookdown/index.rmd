@@ -1,5 +1,5 @@
 ---
-title: "A Guide to Raw Image Processing"
+title: "A Guide to an Image Processing Pipeline and Classification with Machine Learning"
 author: "Henry Sun, Biniam Garomsa, Hector Ontiveros"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
@@ -21,7 +21,7 @@ This book was authored to serve as a basic guide for using the data pipeline to
 process raw images using ROI software, VIA image annotation, and a machine
 learning model.
 
-Special thanks to Audrey Thellman and Wes Slaughter for their guidance and
+Special thanks to Audrey Thellman and Weston Slaughter for their guidance and
 mentorship.
 
 ## Load Packages
@@ -36,3 +36,6 @@ library(reticulate)
 
 ## Introduction 
 
+The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. Our teams images are those from the Hubbard Brook Experimental Forest in New Hampshire, United States. Nine camera traps in as many watersheds have collected images daily for three years, from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product.
+
+Our software can however be viably used for any class of field imagery and classification.
