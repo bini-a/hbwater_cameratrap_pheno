@@ -1,3 +1,38 @@
 # Selecting Region of Interest
 
-This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders.
+This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders. Before beginning this section, ensure that all image files are properly named.
+
+## RoiPoly
+
+RoiPoly[^1] is the python module from which our mouse click events are handled. The functions within this script allow the user to create an ROI by drawing a polygon with mouse clicks. A point is drawn by left clicking, from which a line is bounded to, extending to the user cursor. By left-clicking again, a new point is created and the line becomes static. A new line is again shown from the last point to the user cursor. To complete a figure, the user simply right or double clicks, bounding the last selected point to the first. The polygon created within the image is the region of interest.
+
+## final name of slide_through
+
+final_name_for_script is the script used to create a region of interest and mask for images within a folder.
+
+### Import necessary packages
+Load in all necessary packages. In the making and testing of our script, we have found that the "Qt5Agg" backend works best for Windows system while the "MacOSX" backend works best for Apple. These backends allow us to work interactively with the python plotting library matplotlib. For more information, visit matplotlib's official website.[^2]
+```{python load-python-packages, eval = FALSE}
+import re
+import matplotlib as mpl
+
+mpl.use('Qt5Agg')  # backend for windows
+import cv2
+from roipoly import RoiPoly
+import glob2
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Button
+from collections import OrderedDict
+```
+
+### Loading Image Folder
+Our script uses glob2's .glob function to return a list of path names of images from a specified folder. 
+```{python load-image-folder, eval = FALSE}
+image_folder = glob2.glob(r"Example/Path/To/Folder/*")
+```
+
+### Button
+[^1]: Our version of RoiPoly is derived from jdoepfert's roipoly.py, whose module can be found on at "https://github.com/jdoepfert/roipoly.py"
+
+[^2]: Information of matplotlib backends can be found at https://matplotlib.org/stable/users/explain/backends.html
