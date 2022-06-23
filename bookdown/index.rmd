@@ -1,5 +1,5 @@
 ---
-title: "A Guide to an Image Processing Pipeline and Classification with Machine Learning"
+title: "A Guide to an Image Processing Pipeline for Classification with Machine Learning"
 author: "Henry Sun, Biniam Garomsa, Hector Ontiveros"
 date: "`r Sys.Date()`"
 site: "bookdown::bookdown_site"
@@ -10,10 +10,9 @@ output:
     keep_tex: yes
 ---
 
-```{r echo = FALSE}
+```{r render-book, echo = FALSE}
 # bookdown::render_book("index.Rmd", "bookdown::gitbook")
 ```
-
 
 # About this book
 
@@ -22,11 +21,20 @@ process raw images using ROI software, VIA image annotation, and a machine
 learning model.
 
 Special thanks to Audrey Thellman and Weston Slaughter for their guidance and
-mentorship.
+mentorship.  
+
+
+
+```{r image-display, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/Hbwtr_w1_20200329_120457.JPG")
+#Update file path if needed
+
+```
+
 
 ## Load Packages
 
-```{r}
+```{r load-packages}
 library(bookdown) 
 # Knits markdown files into a book
 library(reticulate)
