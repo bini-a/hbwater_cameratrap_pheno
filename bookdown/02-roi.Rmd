@@ -1,0 +1,3 @@
+# Selecting Region of Interest
+
+This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders.
