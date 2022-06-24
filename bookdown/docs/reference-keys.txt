@@ -1,0 +1,16 @@
+introduction
+about-this-book
+load-packages
+introduction-1
+data-pipeline-overview
+rename-raw-images
+mount-google-drive
+copying-files
+load-packages-1
+copying-files-1
+main-method
+renaming-files
+manual-renames
+selecting-region-of-interest
+classifying-image-attributes-with-via
+random-forest-image-classification

@@ -22,6 +22,7 @@ Afterwards, make sure all file paths used in any functions are for your Google D
 
 ```{r image, echo = FALSE}
 knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/contentdrive.png")
+#Update file path if needed - all images in imgs folder
 
 ```
 
@@ -74,7 +75,7 @@ else:
 ```
 
 
-Copying **any** Google files, be it Google Docs, Slides, Sheets, Drawings, etc. must be done manually as these files are special and not able to be copied using shutil^[For more information, see the comments within the script and text blocks in the Jupyter Notebook]. For any additional file extensions to avoid copying, specify them as arguments for `shutil.ignore_patterns`.
+Copying **any** Google files, be it Google Docs, Slides, Sheets, Drawings, etc. must be done manually as these files are special and not able to be copied using shutil^[For more information, see the comments within the script and text blocks in the Jupyter Notebook.]. For any additional file extensions to avoid copying, specify them as arguments for `shutil.ignore_patterns`.
 
 ### Main Method
 
@@ -161,7 +162,7 @@ def extract_timeStamp(pic_address):
   
 As with before, make sure Google Drive is mounted, and all relevant packages/libraries are
 imported. Then, update the file paths^[It may be a good idea to remove or make a note of any 
-non-image files within the folder, as these will throw errors] and run the main method (below).
+non-image files within the folder, as these will throw errors.] and run the main method (below).
   
 ```{python main-method-rename-images, eval = FALSE}
 from glob import glob
@@ -213,6 +214,7 @@ file_df.head()
 
 ```{r include-dataframe-image, echo = FALSE}
 knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/dataframe.png")
+#Update file path if needed - all images in imgs folder
 
 ```
 
