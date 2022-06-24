@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-06-23" />
+<meta name="date" content="2022-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,7 +154,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="rename-raw-images.html"><a href="rename-raw-images.html#manual-renames"><i class="fa fa-check"></i><b>2.2.1</b> Manual Renames</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html"><i class="fa fa-check"></i><b>3</b> Selecting Region of Interest</a></li>
+<li class="chapter" data-level="3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html"><i class="fa fa-check"></i><b>3</b> Selecting Region of Interest</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#roipoly-functionality"><i class="fa fa-check"></i><b>3.1</b> RoiPoly Functionality</a></li>
+<li class="chapter" data-level="3.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#final-name-of-slide_through"><i class="fa fa-check"></i><b>3.2</b> final name of slide_through</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#preliminary-data-collection-information"><i class="fa fa-check"></i><b>3.2.1</b> Preliminary Data Collection Information</a></li>
+<li class="chapter" data-level="3.2.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#plotting-masking-and-button-functionality"><i class="fa fa-check"></i><b>3.2.2</b> Plotting, Masking, and Button Functionality</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>4</b> Classifying Image Attributes with VIA</a></li>
 <li class="chapter" data-level="5" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html"><i class="fa fa-check"></i><b>5</b> Random Forest Image Classification</a></li>
 <li class="divider"></li>
@@ -178,8 +186,128 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="selecting-region-of-interest" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Selecting Region of Interest<a href="selecting-region-of-interest.html#selecting-region-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders.</p>
+<p>This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders. Before beginning this section, ensure that all image files are properly named.</p>
+<div id="roipoly-functionality" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> RoiPoly Functionality<a href="selecting-region-of-interest.html#roipoly-functionality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>RoiPoly<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> is the python module from which our mouse click events are handled. The functions within this script allow the user to create an ROI by drawing a polygon with mouse clicks. A point is drawn by left clicking, from which a line is bounded to, extending to the user cursor. By left-clicking again, a new point is created and the line becomes static. A new line is again shown from the last point to the user cursor. To complete a figure, the user simply right or double clicks, bounding the last selected point to the first. The polygon created within the image is the region of interest.</p>
+</div>
+<div id="final-name-of-slide_through" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> final name of slide_through<a href="selecting-region-of-interest.html#final-name-of-slide_through" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>final_name_for_script is the script used to create a region of interest and mask for images within a folder.</p>
+<div id="preliminary-data-collection-information" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Preliminary Data Collection Information<a href="selecting-region-of-interest.html#preliminary-data-collection-information" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This section details the functions in this script not directly related to plotting and buttons (change description)</p>
+<div id="import-necessary-packages" class="section level4 hasAnchor" number="3.2.1.1">
+<h4><span class="header-section-number">3.2.1.1</span> Import necessary packages<a href="selecting-region-of-interest.html#import-necessary-packages" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Load in all necessary packages. In the making and testing of our script, we have found that the “Qt5Agg” backend works best for Windows system while the “MacOSX” backend works best for Apple. These backends allow us to work interactively with the python plotting library matplotlib. For more information, visit matplotlib’s official website.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="selecting-region-of-interest.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb10-2"><a href="selecting-region-of-interest.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb10-3"><a href="selecting-region-of-interest.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os.path</span>
+<span id="cb10-4"><a href="selecting-region-of-interest.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-5"><a href="selecting-region-of-interest.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb10-6"><a href="selecting-region-of-interest.html#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="selecting-region-of-interest.html#cb10-7" aria-hidden="true" tabindex="-1"></a>mpl.use(<span class="st">&#39;Qt5Agg&#39;</span>)  <span class="co"># backend</span></span>
+<span id="cb10-8"><a href="selecting-region-of-interest.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb10-9"><a href="selecting-region-of-interest.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> roipoly <span class="im">import</span> RoiPoly</span>
+<span id="cb10-10"><a href="selecting-region-of-interest.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob2</span>
+<span id="cb10-11"><a href="selecting-region-of-interest.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-12"><a href="selecting-region-of-interest.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-13"><a href="selecting-region-of-interest.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Button</span>
+<span id="cb10-14"><a href="selecting-region-of-interest.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> OrderedDict</span>
+<span id="cb10-15"><a href="selecting-region-of-interest.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.path <span class="im">import</span> Path <span class="im">as</span> MplPath</span></code></pre></div>
+</div>
+<div id="loading-image-folder" class="section level4 hasAnchor" number="3.2.1.2">
+<h4><span class="header-section-number">3.2.1.2</span> Loading Image Folder<a href="selecting-region-of-interest.html#loading-image-folder" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Our script denotes the file path to a folder and stores it in a variable folder_path. Change the example path to the path of the folder for which to operate on. We then use the .glob function of the glob package to store the file path for each image into the variable image_folder.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="selecting-region-of-interest.html#cb11-1" aria-hidden="true" tabindex="-1"></a>folder_path <span class="op">=</span> <span class="vs">r&quot;\Example\Path\To\Folder&quot;</span></span>
+<span id="cb11-2"><a href="selecting-region-of-interest.html#cb11-2" aria-hidden="true" tabindex="-1"></a>image_folder <span class="op">=</span> glob2.glob(folder_path <span class="op">+</span> <span class="st">&quot;/*&quot;</span>)</span></code></pre></div>
+</div>
+<div id="imagefile-class" class="section level4 hasAnchor" number="3.2.1.3">
+<h4><span class="header-section-number">3.2.1.3</span> ImageFile Class<a href="selecting-region-of-interest.html#imagefile-class" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Within this script is a class named ImageFile, from which an object containing information from a specified filepath is to be created.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="selecting-region-of-interest.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ImageFile:</span>
+<span id="cb12-2"><a href="selecting-region-of-interest.html#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot; GET ORIGINAL FILE PATH, DATE&quot;&quot;&quot;</span></span>
+<span id="cb12-3"><a href="selecting-region-of-interest.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="selecting-region-of-interest.html#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, filename):</span>
+<span id="cb12-5"><a href="selecting-region-of-interest.html#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.path <span class="op">=</span> filename</span>
+<span id="cb12-6"><a href="selecting-region-of-interest.html#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.image_name <span class="op">=</span> filename.split(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>)[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb12-7"><a href="selecting-region-of-interest.html#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.date <span class="op">=</span> <span class="va">self</span>.get_date()</span>
+<span id="cb12-8"><a href="selecting-region-of-interest.html#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mm, <span class="va">self</span>.dd, <span class="va">self</span>.yy <span class="op">=</span> <span class="va">self</span>.date.split(<span class="st">&quot;/&quot;</span>)</span>
+<span id="cb12-9"><a href="selecting-region-of-interest.html#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mask_id <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb12-10"><a href="selecting-region-of-interest.html#cb12-10" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb12-11"><a href="selecting-region-of-interest.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_date(<span class="va">self</span>):</span>
+<span id="cb12-12"><a href="selecting-region-of-interest.html#cb12-12" aria-hidden="true" tabindex="-1"></a>        date_pattern <span class="op">=</span> <span class="st">&quot;\d</span><span class="sc">{8}</span><span class="st">&quot;</span></span>
+<span id="cb12-13"><a href="selecting-region-of-interest.html#cb12-13" aria-hidden="true" tabindex="-1"></a>        date <span class="op">=</span> re.search(date_pattern, <span class="va">self</span>.path).group(<span class="dv">0</span>)</span>
+<span id="cb12-14"><a href="selecting-region-of-interest.html#cb12-14" aria-hidden="true" tabindex="-1"></a>        dd, mm, yy <span class="op">=</span> date[<span class="op">-</span><span class="dv">2</span>:], date[<span class="op">-</span><span class="dv">4</span>:<span class="op">-</span><span class="dv">2</span>],date[<span class="op">-</span><span class="dv">8</span>:<span class="op">-</span><span class="dv">4</span>]</span>
+<span id="cb12-15"><a href="selecting-region-of-interest.html#cb12-15" aria-hidden="true" tabindex="-1"></a>        date<span class="op">=</span> mm <span class="op">+</span> <span class="st">&#39;/&#39;</span> <span class="op">+</span> dd <span class="op">+</span> <span class="st">&#39;/&#39;</span> <span class="op">+</span> yy</span>
+<span id="cb12-16"><a href="selecting-region-of-interest.html#cb12-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> date</span>
+<span id="cb12-17"><a href="selecting-region-of-interest.html#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_water_year(<span class="va">self</span>):</span>
+<span id="cb12-18"><a href="selecting-region-of-interest.html#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.mm<span class="op">&gt;=</span><span class="st">&quot;10&quot;</span> <span class="kw">or</span> <span class="va">self</span>.mm<span class="op">&lt;=</span><span class="st">&quot;12&quot;</span>:</span>
+<span id="cb12-19"><a href="selecting-region-of-interest.html#cb12-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="bu">int</span>(<span class="va">self</span>.yy[<span class="op">-</span><span class="dv">2</span>:]) <span class="op">+</span><span class="dv">1</span></span>
+<span id="cb12-20"><a href="selecting-region-of-interest.html#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb12-21"><a href="selecting-region-of-interest.html#cb12-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="bu">int</span>(<span class="va">self</span>.yy[<span class="op">-</span><span class="dv">2</span>:])</span>
+<span id="cb12-22"><a href="selecting-region-of-interest.html#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> file_path(<span class="va">self</span>):</span>
+<span id="cb12-23"><a href="selecting-region-of-interest.html#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.path</span>
+<span id="cb12-24"><a href="selecting-region-of-interest.html#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> read_img_orig(<span class="va">self</span>):</span>
+<span id="cb12-25"><a href="selecting-region-of-interest.html#cb12-25" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="va">self</span>.path)</span>
+<span id="cb12-26"><a href="selecting-region-of-interest.html#cb12-26" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> np.asarray(img)</span>
+<span id="cb12-27"><a href="selecting-region-of-interest.html#cb12-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img</span>
+<span id="cb12-28"><a href="selecting-region-of-interest.html#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> read_img_sliced(<span class="va">self</span>):</span>
+<span id="cb12-29"><a href="selecting-region-of-interest.html#cb12-29" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> <span class="va">self</span>.read_img_orig()</span>
+<span id="cb12-30"><a href="selecting-region-of-interest.html#cb12-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img[::<span class="dv">2</span>, ::<span class="dv">2</span>]</span></code></pre></div>
+</div>
+<div id="image-file-object-list" class="section level4 hasAnchor" number="3.2.1.4">
+<h4><span class="header-section-number">3.2.1.4</span> Image File Object List<a href="selecting-region-of-interest.html#image-file-object-list" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A list with complete information of every jpg in image_folder is appended to image_file_object_list, which is then sorted and made to a list of arrays for plotting purposes.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="selecting-region-of-interest.html#cb13-1" aria-hidden="true" tabindex="-1"></a>image_file_object_list <span class="op">=</span> []</span>
+<span id="cb13-2"><a href="selecting-region-of-interest.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> image_folder:</span>
+<span id="cb13-3"><a href="selecting-region-of-interest.html#cb13-3" aria-hidden="true" tabindex="-1"></a>    filetype <span class="op">=</span> filename[<span class="op">-</span><span class="dv">4</span>:]</span>
+<span id="cb13-4"><a href="selecting-region-of-interest.html#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> filetype.lower() <span class="op">!=</span> <span class="st">&quot;.jpg&quot;</span>:</span>
+<span id="cb13-5"><a href="selecting-region-of-interest.html#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb13-6"><a href="selecting-region-of-interest.html#cb13-6" aria-hidden="true" tabindex="-1"></a>    curr_IF <span class="op">=</span> ImageFile(filename)</span>
+<span id="cb13-7"><a href="selecting-region-of-interest.html#cb13-7" aria-hidden="true" tabindex="-1"></a>    image_file_object_list.append(curr_IF)</span>
+<span id="cb13-8"><a href="selecting-region-of-interest.html#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="selecting-region-of-interest.html#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sort by year, then month, then day   </span></span>
+<span id="cb13-10"><a href="selecting-region-of-interest.html#cb13-10" aria-hidden="true" tabindex="-1"></a>image_file_object_list <span class="op">=</span> <span class="bu">sorted</span>(image_file_object_list, key <span class="op">=</span> <span class="kw">lambda</span> x:(x.yy, x.mm, x.dd))</span>
+<span id="cb13-11"><a href="selecting-region-of-interest.html#cb13-11" aria-hidden="true" tabindex="-1"></a>image_file_object_list <span class="op">=</span> np.array(image_file_object_list)</span></code></pre></div>
+</div>
+</div>
+<div id="plotting-masking-and-button-functionality" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Plotting, Masking, and Button Functionality<a href="selecting-region-of-interest.html#plotting-masking-and-button-functionality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This section details the user process and functions needed for image plotting and the associated interactive buttons.</p>
+<div id="creating-first-region-of-interest" class="section level4 hasAnchor" number="3.2.2.1">
+<h4><span class="header-section-number">3.2.2.1</span> Creating First Region of Interest<a href="selecting-region-of-interest.html#creating-first-region-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The first image file object in image_file_object_list is plotted, allowing the user to create the first region of interest and mask(see section 2.1 RoiPoly for instruction).</p>
+</div>
+<div id="masking" class="section level4 hasAnchor" number="3.2.2.2">
+<h4><span class="header-section-number">3.2.2.2</span> Masking<a href="selecting-region-of-interest.html#masking" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="confirm-button" class="section level4 hasAnchor" number="3.2.2.3">
+<h4><span class="header-section-number">3.2.2.3</span> Confirm Button<a href="selecting-region-of-interest.html#confirm-button" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>After creating a region of interest, the user must click confirm to proceed.</p>
+<p>explain code for comfirm</p>
+</div>
+<div id="restart-masking-button" class="section level4 hasAnchor" number="3.2.2.4">
+<h4><span class="header-section-number">3.2.2.4</span> Restart Masking Button<a href="selecting-region-of-interest.html#restart-masking-button" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To create a new region of interest, the user must click restart masking. The user should then create their new region of interest and comfirm to proceed.</p>
+<p>explain code for restarting</p>
+</div>
+<div id="next-and-previous-button" class="section level4 hasAnchor" number="3.2.2.5">
+<h4><span class="header-section-number">3.2.2.5</span> Next and Previous Button<a href="selecting-region-of-interest.html#next-and-previous-button" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="finish-masking-button" class="section level4 hasAnchor" number="3.2.2.6">
+<h4><span class="header-section-number">3.2.2.6</span> Finish Masking Button<a href="selecting-region-of-interest.html#finish-masking-button" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>Our version of RoiPoly is derived from jdoepfert’s roipoly.py, whose module can be found on at “<a href="https://github.com/jdoepfert/roipoly.py" class="uri">https://github.com/jdoepfert/roipoly.py</a>”<a href="selecting-region-of-interest.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Information of matplotlib backends can be found at <a href="https://matplotlib.org/stable/users/explain/backends.html" class="uri">https://matplotlib.org/stable/users/explain/backends.html</a><a href="selecting-region-of-interest.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

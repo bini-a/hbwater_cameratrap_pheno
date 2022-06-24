@@ -15,7 +15,7 @@ This section details the functions in this script not directly related to plotti
 
 #### Import necessary packages
 Load in all necessary packages. In the making and testing of our script, we have found that the "Qt5Agg" backend works best for Windows system while the "MacOSX" backend works best for Apple. These backends allow us to work interactively with the python plotting library matplotlib. For more information, visit matplotlib's official website.[^2]
-```{python load-python-packages, eval = FALSE}
+```{python load-python-packages2, eval = FALSE}
 import re
 import matplotlib as mpl
 import os.path
@@ -97,7 +97,7 @@ This section details the user process and functions needed for image plotting an
 
 #### Creating First Region of Interest
 The first image file object in image_file_object_list is plotted, allowing the user to create the first region of interest and mask(see section 2.1 RoiPoly for instruction).
-```{r image, echo = FALSE}
+```{r image-mid-creation, echo = FALSE}
 #knitr::include_graphics("path to screenshot") #screenshot mid creation of first roi
 ```
 
@@ -105,7 +105,7 @@ The first image file object in image_file_object_list is plotted, allowing the u
 
 #### Confirm Button
 After creating a region of interest, the user must click confirm to proceed.
-```{r image, echo = FALSE}
+```{r image-confirm-button, echo = FALSE}
 #knitr::include_graphics("path to screenshot") #screenshot confirm button popping up
 ```
 
@@ -116,7 +116,7 @@ explain code for comfirm
 #### Restart Masking Button
 To create a new region of interest, the user must click restart masking. The user should then create their new region of interest and comfirm to proceed.
 
-```{r image, echo = FALSE}
+```{r image-restart-masking, echo = FALSE}
 #knitr::include_graphics("path to screenshot") #screenshot confirm button popping up
 ```
 
