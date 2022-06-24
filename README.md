@@ -24,9 +24,9 @@ scale masks to original resolution of the image for later use| HO, BG, HS | **3*
 ~~organize the GitHub repo (remove uneeded scripts and standardize naming conventions, etc.)~~   | HS | **3**
 ~~matplotlib and interactive matplotlib issues on Mac OS~~  | HS, BG, HO | **3**
 ~~more prominent and better date show on each image slide~~ | HO | **3**
-figure out our file hosting options: server, google drive, local files, etc.   | AT, WS | **3**
 ~~prepare presentation for 6/21~~   | HS, BG, HO | **Other**
-
+figure out our file hosting options: server, google drive, local files, etc.   | AT, WS | **3**
+finish minimum viable product (Bookdown) first draft, setup Github pages | HS, HO | **3**
 
 
 ## Future Objectives
@@ -34,6 +34,7 @@ Tasks | People | Step
 ------- | -------- | --------
 create walkthrough with example files as both proof-of-concept for our data pipeline, and as a walkthrough for future users | XX | **7**
 export Jupyter notebook to *.py* files  | XX | **8**
+
 
 
 ## Notes
