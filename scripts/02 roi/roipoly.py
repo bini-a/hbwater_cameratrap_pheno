@@ -70,7 +70,7 @@ class RoiPoly:
         self.__cid2 = self.fig.canvas.mpl_connect(
             'button_press_event', self.__button_press_callback)
         ## checks for left mouse double click or right mouse click
-        self.dbl_clicked = False
+        self.finished_clicking = False
 
         if show_fig:
             self.show_figure()
@@ -208,7 +208,7 @@ class RoiPoly:
             elif (((event.button == 1 and event.dblclick) or
                    (event.button == 3 and not event.dblclick)) and
                   self.line is not None):
-                self.dbl_clicked = True
+                self.finished_clicking = True
                 # Close the loop and disconnect
                 logger.debug("Received single right mouse button click or "
                              "double left click")
