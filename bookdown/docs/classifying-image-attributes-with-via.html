@@ -163,7 +163,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#plotting-masking-and-button-functionality"><i class="fa fa-check"></i><b>3.2.2</b> Plotting, Masking, and Button Functionality</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>4</b> Classifying Image Attributes with VIA</a></li>
+<li class="chapter" data-level="4" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>4</b> Classifying Image Attributes with VIA</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#creating-project"><i class="fa fa-check"></i><b>4.1</b> Creating Project</a></li>
+<li class="chapter" data-level="4.2" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#creating-attributes"><i class="fa fa-check"></i><b>4.2</b> Creating Attributes</a></li>
+<li class="chapter" data-level="4.3" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#classify-pixels"><i class="fa fa-check"></i><b>4.3</b> Classify Pixels</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html"><i class="fa fa-check"></i><b>5</b> Random Forest Image Classification</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -186,8 +191,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="classifying-image-attributes-with-via" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Classifying Image Attributes with VIA<a href="classifying-image-attributes-with-via.html#classifying-image-attributes-with-via" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>TBA</p>
+<p>After completing image masking, the next step is done entirely in VGG Image Annotator.
+This is an HTML software found online, and the demo can be accessed <a href="https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html">here</a>. It should look like this:</p>
+<p><img src="imgs/VIASoftware.png" width="1440" /></p>
+<div id="creating-project" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Creating Project<a href="classifying-image-attributes-with-via.html#creating-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If a project already exists, navigate to the project tab in the menu bar and click
+load project to load in a preexisting .json file. Otherwise, remove the demo images
+and upload your own images using <strong>add files</strong>.</p>
+<p>At any point during annotation, these files may be saved into a .json project using
+<strong>Project&gt;&gt;Save</strong> from the menu bar.</p>
+</div>
+<div id="creating-attributes" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Creating Attributes<a href="classifying-image-attributes-with-via.html#creating-attributes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To create attributes for pixel classification, navigate to the bottom left-hand side
+of the screen to name and assign characteristics for the attribute.</p>
+<p>In our project, the classified images outputted from VIA became the <em>training data</em> for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
+including <code>ice_t</code> (transparent ice), <code>leaf_green</code>, <code>leaf_fall</code>, <code>open_water</code>, and
+<code>snow_o</code> (opaque snow), among others.</p>
+</div>
+<div id="classify-pixels" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Classify Pixels<a href="classifying-image-attributes-with-via.html#classify-pixels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Classify pixels by dragging and clicking on the image to create boxes or shapes
+using the desired <em>region shape,</em> and then assigning them to attributes.
+Repeat this process for all images in the folder, and export your annotations as a
+<strong>.json</strong> or <strong>.csv</strong> file. See below for an example using VIA’s demo file.</p>
+<p><img src="imgs/viademo.png" width="1108" /></p>
+<p>If you must stop midway, save your project by clicking on the <strong>settings</strong> pane
+in the menu bar and following the instructions. This will allow you to load in
+your previously saved progress directly in the future.</p>
 
+</div>
 </div>
             </section>
 
