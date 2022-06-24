@@ -9,4 +9,6 @@ data_der/
 data_der.zip
 *.DS_store
 *.pyc
-
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
