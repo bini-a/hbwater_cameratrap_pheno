@@ -1,33 +1,16 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun  6 14:46:12 2022
-
-@author: Dell
-"""
 import os.path
 import re
 import matplotlib as mpl
 import pandas as pd
 from PIL import Image
-
 mpl.use('Qt5Agg')  # backend for windows
-import cv2
 from roipoly import RoiPoly
 import glob2
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
-from collections import OrderedDict
 from matplotlib.path import Path as MplPath
 
-# TODO  confrim button-overlaying next button, change date extraction using regular expression, last and first item of folder
-# TODO docstrings, create folder to store masks, dataframe to store metadata about images + masks, last button to close window and save all images to file directory
-
-
-
-"""Draw polygon regions of interest (ROIs) in matplotlib images,
-similar to Matlab's roipoly function.
-"""
 
 #### sample image local folder
 folder_path = r"C:\Users\Dell\Downloads\W1"
@@ -39,6 +22,7 @@ date_list = []
 date_dict= {}
 
 class ImageFile:
+
     """ GET ORIGINAL FILE PATH, DATE"""
 
     def __init__(self, filename):
@@ -95,23 +79,6 @@ for filename in  s:
 image_file_object_list = sorted(image_file_object_list, key = lambda x:(x.yy, x.mm, x.dd))
 image_file_object_list = np.array(image_file_object_list)
 
-# image_file_sliced_list = [i.read_img_sliced() for i in image_file_object_list[:100]]
-# image_date_list = [i.]
-# for i in image_file_list:
-#     print(i.date,i.mm)
-
-
-# # read all images
-# original_image_folder = [read_img(im, orig=True) for im in image_folder[24:36]]
-# image_folder = [read_img(im) for im in image_folder[24:36]]
-#
-# date_imgpath_dic = OrderedDict()
-# # print(date_list)
-# for x in range(len(date_list)):
-#     date_imgpath_dic[date_list[x]] = image_folder[x]
-# print(date_imgpath_dic)
-
-
 masked_images_list = None
 curr_poly_verts_list = None
 original_masked_images_list= None
@@ -124,7 +91,6 @@ bnext = None
 bprev = None
 restart_masking_button = None
 my_roi = RoiPoly(color='k', show_fig=False)
-# my_roi = None
 confirm_button = None
 poly_verts_list = None
 # plot width and height
@@ -144,8 +110,6 @@ def get_mask_poly_verts(image, poly_verts, on_original=False):
     roi_path = MplPath(poly_verts)
     mask = roi_path.contains_points(points).reshape((ny, nx))
     return mask
-
-
 class Index:
     ind = 0
     # def get_curr_index(self):
@@ -270,11 +234,11 @@ def finish_masking(event):
 
     image_mask_id_df = pd.DataFrame([(i.date, i.mask_id, i.file_path(), i.get_water_year(),ind, poly_verts_list[ind] ) for ind, i in enumerate(image_file_object_list)],
                                     columns=["Date", "mask_id","file_path", "WY","list_index", "poly_verts"])
+    image_mask_id_df[["mask_id","poly_verts"]].drop_duplicates(subset=["mask_id"]).to_csv(folder_path+"/"+"image_mask.csv", index=False)
     image_mask_id_df.set_index("Date", inplace=True)
     print(len(image_file_object_list))
     print(image_mask_id_df.head())
     x = image_mask_id_df.reset_index()[["mask_id","poly_verts"]]
-    x.unique().to_csv(folder_path+"/"+"image_mask.csv")
     copy_df = image_mask_id_df.reset_index().copy()
     copy_df.set_index("WY", inplace=True)
     print(copy_df.head())
@@ -304,46 +268,9 @@ def finish_masking(event):
             curr_img_save_dest = wy_dest+"/"+curr_file_name
             # save curr_original_image
             Image.fromarray(np.array(curr_original_image)).save(curr_img_save_dest)
-
-
     print("FINISHED SAVING")
     plt.close()
-    # save
-    # image_mask_id_dst = folder_path + "/" + "image_mask_id.csv"
-    # image_mask_id.to_csv(image_mask_id_dst)
-    # print(image_mask_id)
-    #
 
-
-    # print("START MASKING  ORIGINAL IMAGES")
-
-    #
-    # # water_year_list = sort_by_water_year(original_image_folder)
-    # # mask original images
-    # for i in range(len(original_image_folder)):
-    #     orig_curr_img = original_image_folder[i]
-    #     orig_curr_mask = get_mask_poly_verts(orig_curr_img, poly_verts_list[i], on_original=True)
-    #     orig_curr_img[orig_curr_mask != 1] = 0
-    #     original_masked_images_list[i] = orig_curr_img
-    # print("END MASKING  ORIGINAL IMAGES")
-    #
-    #
-    # # import pickle
-    # # list_path = folder_path + "/" +"orig_list"
-    # # print("START PICKLING")
-    # # with open(list_path, "wb") as fp:
-    # #     pickle.dump(original_masked_images_list, fp)
-    # #
-    # # print("FINISHED")
-    #
-    # im = Image.fromarray(np.array(original_masked_images_list[0]))
-    # im.save(folder_path + "/" + "sample.jpg")
-    #
-    # curr_masked_img.imshow(original_masked_images_list[5])
-    # plt.draw()
-    # # print(np.shape(original_masked_images_list[0]), np.shape(masked_images_list[0]))
-    # plt.pause(5)
-    # plt.close()
 
 def show_next_prev():
     global bnext, bprev, restart_masking_button, finish_masking_button
@@ -433,30 +360,4 @@ fg.set_size_inches(w, h, forward=True)
 
 # collect roi from image + confirm button
 select_roi_ret = select_roi(start_img_ind)
-
-
 plt.show()
-
-
-
-# save and finish
-
-# save masked images to a folder path
-
-#
-# dst =
-# for i in range(2):
-#     orig_curr_img = original_image_folder[i]
-#     orig_curr_mask = get_mask_poly_verts(orig_curr_img, poly_verts_list[i])
-#     orig_curr_img[orig_curr_mask != 1] = 0
-#     original_masked_images_list[i] = orig_curr_img
-#
-# print(" mask dic, {}".format(mask_dictionary))
-# mask_num_list = []
-# mask_num = 0
-# for i in range(len(image_folder)):
-#     if date_list[i] in mask_dictionary:
-#         mask_num += 1
-#         mask_num_list.append("Mask" + str(mask_num))
-# mask_num_dict = dict(zip(mask_num_list, list(mask_dictionary.values())))
-# print(mask_num_dict)
