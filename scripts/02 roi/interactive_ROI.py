@@ -1,3 +1,4 @@
+
 # import libraries
 import os.path
 import re
@@ -384,7 +385,7 @@ image_folder = glob2.glob(folder_path + "/*")
 
 # Loop over all image files, Create ImageFile objects and save to image_file_list
 image_file_list = []
-for filename in image_folder:
+for filename in image_folder[:10]:
     filetype = filename[-4:]
     # Check if the file name ends with ".JPG" or ".jpg"
     if filetype.lower() != ".jpg":
