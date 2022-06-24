@@ -27,4 +27,7 @@ restart-masking-button
 next-and-previous-button
 finish-masking-button
 classifying-image-attributes-with-via
+creating-project
+creating-attributes
+classify-pixels
 random-forest-image-classification
