@@ -2,7 +2,7 @@
 
 This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders. Before beginning this section, ensure that all image files are properly named.
 
-## RoiPoly Functionality
+## RoiPoly Instruction
 
 `RoiPoly`[^1] is the python module from which our mouse click events are handled. The functions within this script allow the user to create an ROI by drawing a polygon with mouse clicks. A point is drawn by left clicking, from which a line is bounded to, extending to the user cursor. By left-clicking again, a new point is created and the line becomes static. A new line is again shown from the last point to the user cursor. To complete a figure, the user simply right or double clicks, bounding the last selected point to the first. The polygon created within the image is the region of interest.
 
@@ -106,13 +106,13 @@ image_file_list = np.array(sorted(image_file_list, key=lambda x: (x.yy, x.mm, x.
 ```
 
 ### First ROI and Masking Function
-This section details the user process and functions needed for image plotting and the associated interactive buttons.
+This section details the creation of the first region of interest as well as the dynamics behind image masking.
 
 #### Creating First Region of Interest
-The first image file in image_file_list is plotted, allowing the user to draw the first region of interest (see section 2.1 `RoiPoly` for instruction).
+The first image file in image_file_list is plotted, allowing the user to draw the first region of interest (see section `RoiPoly Instruction` for details).
 
 ```{r image-mid-creation, echo = FALSE}
-#knitr::include_graphics("path to screenshot") #screenshot mid creation of first roi
+knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/roi_drawing_initial.png")
 ```
 
 #### Masking
@@ -123,7 +123,7 @@ def get_mask_poly_verts(image, poly_verts, on_original=False):
     """
     :param image: np.array of image
     :param poly_verts: list of  coordinates from ROI selection
-    :param on_original: boolean indicating if the mask is applied to original or sliced image
+    :param on_original: boolean indicating if the mask is applied to riginal or sliced image
     :return: image mask that can be applied to image
     """
     if len(np.shape(image)) == 3:
@@ -157,7 +157,7 @@ def apply_mask(im, mask):
 ```
 
 ### Button Events
-This section details instruction and function for each interactive button. These buttons are part of `matplotlib`'s `Button` module. Creating one requires an event function, as well as initialization as seen below for the `Confirm` button.
+This section details instruction and function for each interactive button event. These buttons are part of `matplotlib`'s `Button` module. Creating one requires an event function, as well as button initialization as seen below for the `Confirm` button.
 
 ```{python initalizing_button, eval = FALSE}
 confirm_ax = plt.axes([0.81, 0.05, 0.1, 0.075])
@@ -169,7 +169,7 @@ confirm_button._button = confirm_button
 #### Confirm Button
 After creating a region of interest, the user must click confirm to proceed and apply the mask.
 ```{r image-confirm-button, echo = FALSE}
-#knitr::include_graphics("path to screenshot") #screenshot confirm button popping up
+knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/confirmbutton.png")
 ```
 
 The `confirm_roi` event allows the user to confirm the selected ROI.
@@ -191,13 +191,13 @@ def confirm_roi(event):
 
 ```
 #### Restart Masking Button
-To create a new region of interest, the user must click restart masking. The user should then create a new region of interest and confirm to proceed to apply the new mask.
+To create a new region of interest, the user must click restart masking. The user should then create a new region of interest and confirm to proceed to apply the new mask. After creating a new ROI, the user has the option to confirm or to restart and draw a new ROI.
 
 ```{r image-restart-masking, echo = FALSE}
-#knitr::include_graphics("path to screenshot") #screenshot restart button popping up
+knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/restartmasking.png")
 ```
 
-After creating a new ROI, the user has the option to confirm or to restart and draw a new ROI.
+The underlying dynamics of the `restart_masking` can be seen here.
 ```{python restart-masking-button, eval = FALSE}
 def restart_masking(event):
     """
@@ -255,9 +255,10 @@ def restart_masking(event):
 The next and previous buttons allow the user to click through images in the folder with the mask overlaid. These are part of the callback function `Callback`, which makes sliding through a folder possible through indexing.
 
 ```{r next-prev-button, echo = FALSE}
-#knittr::include_graphics("filepath to screenshot")
+knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/previousnext.jpg")
 ```
 
+By indexing, each image is drawn with its associated date in the figure title.
 ```{python next_prev_buttons, eval = FALSE}
 def next(self, event):
     """
@@ -296,7 +297,7 @@ def prev(self, event):
 
 Once masking has been complete, click "finish masking" to close the figure. This button event also creates the water year folders, a dataframe linking every `mask_id` to its associated mask, a dataframe linking date of image to `mask_id`, and apply's the mask onto the full size original image.
 ```{r finish_masking_button, echo = FALSE}
-
+knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/finishmasking.jpg")
 ```
 
 This event is slow and hefty, expect a long processing time.
@@ -378,17 +379,21 @@ def finish_masking(event):
 
 ### Output
 The output from interactive_ROI_app.py consists of sorted wateryear folders containing masked images, a dataframe linking every `mask_id` to its associated mask, and a dataframe linking date of image to `mask_id`.
+
 #### Example Wateryear output
+Here is an example wateryear folder containing masked images.
 ```{r wateryear-folder, echo = FALSE}
-#knittr::include_graphics("path to screenshot")# screenshot of wateryear folder output
+#knitr::include_graphics("path to screenshot")# screenshot of wateryear folder output
 ```
 #### Example Output for Dataframes
+Here is an example dataframe that stores each `mask_id` to its associated mask.
 ```{r Dataframe-id-mask, echo = FALSE}
-#knittr::include_graphics("path to screenshot")# screenshot of mask id to associated mask dataframe
+#knitr::include_graphics("path to screenshot")# screenshot of mask id to associated mask dataframe
 ```
 
+Here is an example dataframe that stores each `mask_id` to its associated date. 
 ```{r Dataframe-date-id, echo = FALSE}
-#knittr::include_graphics("path to screenshot")# screenshot of date to mask id dataframe
+#knitr::include_graphics("path to screenshot")# screenshot of date to mask id dataframe
 ```
 
 [^1]: Our version of RoiPoly is derived from jdoepfert's roipoly.py, whose module can be found on at "https://github.com/jdoepfert/roipoly.py"
