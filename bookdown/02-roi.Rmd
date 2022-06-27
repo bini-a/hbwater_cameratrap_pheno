@@ -2,19 +2,20 @@
 
 This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders. Before beginning this section, ensure that all image files are properly named.
 
+`final_name_for_script` is the script used to create a region of interest and mask for images within a folder.
+
 ## RoiPoly Functionality
 
 `RoiPoly`[^1] is the python module from which our mouse click events are handled. The functions within this script allow the user to create an ROI by drawing a polygon with mouse clicks. A point is drawn by left clicking, from which a line is bounded to, extending to the user cursor. By left-clicking again, a new point is created and the line becomes static. A new line is again shown from the last point to the user cursor. To complete a figure, the user simply right or double clicks, bounding the last selected point to the first. The polygon created within the image is the region of interest.
 
-## final name of slide_through
+## Preliminary Data Collection 
 
-`final_name_for_script` is the script used to create a region of interest and mask for images within a folder.
+This section details the functions in this script not directly related to plotting and buttons (change description).
 
-### Preliminary Data Collection Information
-This section details the functions in this script not directly related to plotting and buttons (change description)
+### Import necessary packages
 
-#### Import necessary packages
 Load in all necessary packages. In the making and testing of our script, we have found that the "`Qt5Agg`" backend works best for Windows system while the "`MacOSX`" backend works best for Apple. These backends allow us to work interactively with the python plotting library `matplotlib`. For more information, visit `matplotlib`'s official website.[^2]
+
 ```{python load-python-packages2, eval = FALSE}
 import re
 import matplotlib as mpl
@@ -33,15 +34,19 @@ from collections import OrderedDict
 from matplotlib.path import Path as MplPath
 ```
 
-#### Loading Image Folder
+### Loading Image Folder
+
 Our script denotes the file path to a folder and stores it in a variable `folder_path`. Change the example path to the path of the folder for which to operate on. We then use the `.glob` function of the `glob` package to store the file path for each image into the variable `image_folder`.
+
 ```{python load-image-folder, eval = FALSE}
 folder_path = r"\Example\Path\To\Folder"
 image_folder = glob2.glob(folder_path + "/*")
 ```
 
-#### ImageFile Class
+### ImageFile Class
+
 Within this script is a class named `ImageFile`, from which an object containing information from a specified filepath is to be created.
+
 ```{python image_file_lass, eval = FALSE}
 class ImageFile:
     """ GET ORIGINAL FILE PATH, DATE"""
@@ -76,8 +81,10 @@ class ImageFile:
 
 ```
 
-#### Image File Object List
+### Image File Object List
+
 A list with complete information of every jpg in image_folder is appended to `image_file_object_list`, which is then sorted and made to a list of arrays for plotting purposes.
+
 ```{python sort-image-folder, eval = FALSE}
 image_file_object_list = []
 for filename in image_folder:
@@ -92,46 +99,62 @@ image_file_object_list = sorted(image_file_object_list, key = lambda x:(x.yy, x.
 image_file_object_list = np.array(image_file_object_list)
 ```
 
-### Plotting, Masking, and Button Functionality
+## Plotting, Masking, and Button Functionality
+
 This section details the user process and functions needed for image plotting and the associated interactive buttons.
 
-#### Creating First Region of Interest
+### Creating First Region of Interest
 The first image file object in image_file_object_list is plotted, allowing the user to create the first region of interest and mask (see section 2.1 `RoiPoly` for instruction).
 ```{r image-mid-creation, echo = FALSE}
 #knitr::include_graphics("path to screenshot") #screenshot mid creation of first roi
 ```
 
-#### Masking
+### Masking
 
 #### Confirm Button
 After creating a region of interest, the user must click confirm to proceed and apply the mask.
 ```{r image-confirm-button, echo = FALSE}
-#knitr::include_graphics("path to screenshot") #screenshot confirm button popping up
+knitr::include_graphics("./imgs/confirmbutton.png")
+
 ```
 
 explain code for confirm
 ```{python confirm-button, eval = FALSE}
 
 ```
+
 #### Restart Masking Button
 To create a new region of interest, the user must click restart masking. The user should then create a new region of interest and confirm to proceed and apply the new mask to the remaining
 images.
 
 ```{r image-restart-masking, echo = FALSE}
-#knitr::include_graphics("path to screenshot") #screenshot confirm button popping up
+knitr::include_graphics("./imgs/restartmasking.png")
+
 ```
 
 explain code for restarting
 ```{python restart-masking-button, eval = FALSE}
 
 ```
+
 #### Next and Previous Button
 
 The next and previous buttons allow the user to click through images in the folder
 with the mask overlaid. 
 
+```{r image-previous-next-button, echo = FALSE}
+knitr::include_graphics("./imgs/previousnext.jpg")
+
+```
+
 
 #### Finish Masking Button
+
+```{r image-finish-button, echo = FALSE}
+knitr::include_graphics("./imgs/finishmasking.jpg")
+
+```
+
 
 Once masking has been complete, click "finish masking" to close the popup.
 

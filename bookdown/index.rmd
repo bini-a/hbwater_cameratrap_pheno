@@ -42,7 +42,7 @@ The primary target users of this software are river ecologists looking to extrac
 
 
 ```{r image-display, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/Hbwtr_w1_20200329_120457.JPG")
+knitr::include_graphics("./imgs/Hbwtr_w1_20200329_120457.JPG")
 #Update file path if needed - all images in imgs folder
 
 ```
