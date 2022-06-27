@@ -2,19 +2,20 @@
 
 This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders. Before beginning this section, ensure that all image files are properly named.
 
-## RoiPoly Instruction
+`interactive_ROI_app.py` is the script used to create a region of interest and mask for images within a folder.
+
+## RoiPoly Functionality
 
 `RoiPoly`[^1] is the python module from which our mouse click events are handled. The functions within this script allow the user to create an ROI by drawing a polygon with mouse clicks. A point is drawn by left clicking, from which a line is bounded to, extending to the user cursor. By left-clicking again, a new point is created and the line becomes static. A new line is again shown from the last point to the user cursor. To complete a figure, the user simply right or double clicks, bounding the last selected point to the first. The polygon created within the image is the region of interest.
 
-## Interactive ROI Application
+## Preliminary Data Collection 
 
-`interactive_ROI_app.py` is the script used to create a region of interest and mask for images within a folder.
+This section details the functions in this script not directly related to plotting and buttons (change description).
 
-### Preliminary Data Collection Information
-This section details the functions in this script not directly related to plotting and buttons (change description)
+### Import necessary packages
 
-#### Import necessary packages
 Load in all necessary packages. In the making and testing of our script, we have found that the "`Qt5Agg`" backend works best for Windows system while the "`MacOSX`" backend works best for Apple. These backends allow us to work interactively with the python plotting library `matplotlib`. For more information, visit `matplotlib`'s official website.[^2]
+
 ```{python load-python-packages2, eval = FALSE}
 import re
 import matplotlib as mpl
@@ -33,15 +34,20 @@ from collections import OrderedDict
 from matplotlib.path import Path as MplPath
 ```
 
-#### Loading Image Folder
+### Loading Image Folder
+
 Our script denotes the file path to a folder and stores it in a variable `folder_path`. Change the example path to the path of the folder for which to operate on. We then use the `.glob` function of the `glob` package to store the file path for each image into the variable `image_folder`.
+
 ```{python load-image-folder, eval = FALSE}
 folder_path = r"\Example\Path\To\Folder"
 image_folder = glob2.glob(folder_path + "/*")
 ```
 
-#### ImageFile Class
-Within this script is a class named `ImageFile`, from which an object containing information from a specified filename is to be created.
+### ImageFile Class
+
+Within this script is a class named `ImageFile`, from which an object containing information from a specified filepath is to be created.
+
+
 ```{python image_file_lass, eval = FALSE}
 class ImageFile:
     """ Image File class to save file path, file name, date, mask_id"""
@@ -87,7 +93,8 @@ class ImageFile:
         return img[::2, ::2]
 ```
 
-#### Image File List
+### Image File Object List
+
 A list with complete information of every jpg in image_folder is appended to `image_file_list`, which is then sorted and made to a list of arrays for plotting purposes.
 
 ```{python sort-image-folder, eval = FALSE}
@@ -105,17 +112,19 @@ image_file_list = np.array(sorted(image_file_list, key=lambda x: (x.yy, x.mm, x.
 
 ```
 
-### First ROI and Masking Function
-This section details the creation of the first region of interest as well as the dynamics behind image masking.
+## First ROI and Masking Function
 
-#### Creating First Region of Interest
-The first image file in image_file_list is plotted, allowing the user to draw the first region of interest (see section `RoiPoly Instruction` for details).
+This section details the user process and functions needed for image plotting and the associated interactive buttons.
+
+### Creating First Region of Interest
+The first image file object in image_file_object_list is plotted, allowing the user to create the first region of interest and mask (see section 2.1 `RoiPoly` for instruction).
 
 ```{r image-mid-creation, echo = FALSE}
 knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/roi_drawing_initial.png")
 ```
 
-#### Masking
+## Masking
+
 Each selected point in a created polygon is stored into `poly_verts`, which is used to create the mask outline for the region of interest.
 
 ```{python get_mask, eval = FALSE}
@@ -169,7 +178,8 @@ confirm_button._button = confirm_button
 #### Confirm Button
 After creating a region of interest, the user must click confirm to proceed and apply the mask.
 ```{r image-confirm-button, echo = FALSE}
-knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/confirmbutton.png")
+knitr::include_graphics("./imgs/confirmbutton.png")
+
 ```
 
 The `confirm_roi` event allows the user to confirm the selected ROI.
@@ -190,11 +200,13 @@ def confirm_roi(event):
     _ = show_next_prev()
 
 ```
+
 #### Restart Masking Button
 To create a new region of interest, the user must click restart masking. The user should then create a new region of interest and confirm to proceed to apply the new mask. After creating a new ROI, the user has the option to confirm or to restart and draw a new ROI.
 
 ```{r image-restart-masking, echo = FALSE}
-knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/restartmasking.png")
+knitr::include_graphics("./imgs/restartmasking.png")
+
 ```
 
 The underlying dynamics of the `restart_masking` can be seen here.
@@ -250,6 +262,7 @@ def restart_masking(event):
     plt.draw()
 
 ```
+
 #### Next and Previous Button
 
 The next and previous buttons allow the user to click through images in the folder with the mask overlaid. These are part of the callback function `Callback`, which makes sliding through a folder possible through indexing.
@@ -292,12 +305,19 @@ def prev(self, event):
     plt.draw()
 ```
 
+```{r image-previous-next-button, echo = FALSE}
+knitr::include_graphics("./imgs/previousnext.jpg")
+
+```
+
 
 #### Finish Masking Button
 
 Once masking has been complete, click "finish masking" to close the figure. This button event also creates the water year folders, a dataframe linking every `mask_id` to its associated mask, a dataframe linking date of image to `mask_id`, and apply's the mask onto the full size original image.
-```{r finish_masking_button, echo = FALSE}
-knitr::include_graphics("/Users/hecon/Documents/BOOKDOWN/bookdown/imgs/finishmasking.jpg")
+
+```{r image-finish-button, echo = FALSE}
+knitr::include_graphics("./imgs/finishmasking.jpg")
+
 ```
 
 This event is slow and hefty, expect a long processing time.
@@ -342,6 +362,7 @@ def finish_masking(event):
     list_wy = list(image_file_info.index.unique())
     print("STARTED SAVING")
     print("This takes about 1 second per an image file")
+
 
     for water_year in list_wy:
         # Create folders for each water year

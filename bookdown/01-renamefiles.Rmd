@@ -1,8 +1,8 @@
 # Rename Raw Images
 
-Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a timespan of several years. The original file names were a nondescriptive series of numbers,
+Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers,
 following this step, they will contain information about the watershed the photo
-was taken at as well as timeseries image metadata.
+was taken at as well as time-series image metadata.
 
 These steps were designed to process files stored in a shared Google Drive. Before renaming images contained in a local directory, modifications to the script will need to be made; 
 however, the same general principles will still apply.
@@ -21,7 +21,7 @@ When using Google Colaboratory, before performing any file operations, you must 
 Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname. 
 
 ```{r image, echo = FALSE}
-knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/contentdrive.png")
+knitr::include_graphics("./imgs/contentdrive.png")
 #Update file path if needed - all images in imgs folder
 
 ```
@@ -213,7 +213,7 @@ file_df.head()
 ```
 
 ```{r include-dataframe-image, echo = FALSE}
-knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/dataframe.png")
+knitr::include_graphics("./imgs/dataframe.png")
 #Update file path if needed - all images in imgs folder
 
 ```

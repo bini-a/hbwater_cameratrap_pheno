@@ -4,7 +4,7 @@ After completing image masking, the next step is done entirely in VGG Image Anno
 This is an HTML software found online, and the demo can be accessed [here](https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html). It should look like this:
 
 ```{r knitr-via-preview, echo=FALSE}
-knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/VIASoftware.png")
+knitr::include_graphics("./imgs/VIASoftware.png")
 ```
 
 
@@ -26,6 +26,9 @@ In our project, the classified images outputted from VIA became the *training da
 including `ice_t` (transparent ice), `leaf_green`, `leaf_fall`, `open_water`, and
 `snow_o` (opaque snow), among others. 
 
+To load the attributes that we used in our project, clicking this [link](./imgs/hbwater_cameratrap_demo.json) will open a text file. Copy the contents
+of this file and save it as a `.json` file. Then, select load project from the menu bar.
+
 ## Classify Pixels
 
 Classify pixels by dragging and clicking on the image to create boxes or shapes
@@ -34,7 +37,7 @@ Repeat this process for all images in the folder, and export your annotations as
 **.json** or **.csv** file. See below for an example using VIA's demo file.
 
 ```{r knitr-via-demo, echo=FALSE}
-knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/viademo.png")
+knitr::include_graphics("./imgs/viademo.png")
 ```
 
 If you must stop midway, save your project by clicking on the **settings** pane

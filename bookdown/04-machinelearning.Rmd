@@ -6,7 +6,7 @@ in identifying leaf cover. The image on the right is the original masked image,
 whereas the image on the left is the ML output showing water in teal and leaves in gold.
 
 ```{r machine-learning-image, echo=FALSE}
-knitr::include_graphics("/Users/henrysun_1/Documents/GitHub/hbwater_cameratrap_pheno/bookdown/imgs/image_of_leaves.png")
+knitr::include_graphics("./imgs/image_of_leaves.png")
 
 ```
  
