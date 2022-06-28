@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-06-27" />
+<meta name="date" content="2022-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -457,7 +457,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-28"><a href="selecting-region-of-interest.html#cb19-28" aria-hidden="true" tabindex="-1"></a>    img_display.set_data(im)</span>
 <span id="cb19-29"><a href="selecting-region-of-interest.html#cb19-29" aria-hidden="true" tabindex="-1"></a>    img_display_axis.set_title(<span class="st">&quot;Click next or draw new ROI for Date: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(image_file_list[<span class="va">self</span>.index].get_date()))</span>
 <span id="cb19-30"><a href="selecting-region-of-interest.html#cb19-30" aria-hidden="true" tabindex="-1"></a>    plt.draw()</span></code></pre></div>
-<p><img src="imgs/previousnext.jpg" width="1440" /></p>
 </div>
 <div id="finish-masking-button" class="section level4 hasAnchor" number="3.4.1.4">
 <h4><span class="header-section-number">3.4.1.4</span> Finish Masking Button<a href="selecting-region-of-interest.html#finish-masking-button" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -542,14 +541,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.4.2</span> Output<a href="selecting-region-of-interest.html#output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The output from interactive_ROI_app.py consists of sorted wateryear folders containing masked images, a dataframe linking every <code>mask_id</code> to its associated mask, and a dataframe linking date of image to <code>mask_id</code>.</p>
 <div id="example-wateryear-output" class="section level4 hasAnchor" number="3.4.2.1">
-<h4><span class="header-section-number">3.4.2.1</span> Example Wateryear output<a href="selecting-region-of-interest.html#example-wateryear-output" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Here is an example wateryear folder containing masked images.
-<img src="imgs/wateryear_example_folder.png" width="960" />
-#### Example Output for Dataframes
-Here is an example dataframe that stores each <code>mask_id</code> to its associated mask.
-<img src="imgs/maskid_mask.png" width="744" /></p>
-<p>Here is an example dataframe that stores each <code>mask_id</code> to its associated date.
-<img src="imgs/date_mask_csv_example.png" width="704" /></p>
+<h4><span class="header-section-number">3.4.2.1</span> Example Wateryear Output<a href="selecting-region-of-interest.html#example-wateryear-output" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here is an example wateryear folder containing masked images.</p>
+<p><img src="imgs/wateryear_example_folder.png" width="960" /></p>
+</div>
+<div id="example-output-for-dataframes" class="section level4 hasAnchor" number="3.4.2.2">
+<h4><span class="header-section-number">3.4.2.2</span> Example Output for Dataframes<a href="selecting-region-of-interest.html#example-output-for-dataframes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here is an example dataframe that stores each <code>mask_id</code> to its associated mask.</p>
+<p><img src="imgs/maskid_mask.png" width="744" /></p>
+<p>Here is an example dataframe that stores each <code>mask_id</code> to its associated date.</p>
+<p><img src="imgs/date_mask_csv_example.png" width="704" /></p>
 
 </div>
 </div>

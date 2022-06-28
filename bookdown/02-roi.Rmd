@@ -267,11 +267,13 @@ def restart_masking(event):
 
 The next and previous buttons allow the user to click through images in the folder with the mask overlaid. These are part of the callback function `Callback`, which makes sliding through a folder possible through indexing.
 
-```{r next-prev-button, echo = FALSE}
+```{r image-previous-next-button, echo = FALSE}
 knitr::include_graphics("./imgs/previousnext.jpg")
+
 ```
 
 By indexing, each image is drawn with its associated date in the figure title.
+
 ```{python next_prev_buttons, eval = FALSE}
 def next(self, event):
     """
@@ -303,11 +305,6 @@ def prev(self, event):
     img_display.set_data(im)
     img_display_axis.set_title("Click next or draw new ROI for Date: {}".format(image_file_list[self.index].get_date()))
     plt.draw()
-```
-
-```{r image-previous-next-button, echo = FALSE}
-knitr::include_graphics("./imgs/previousnext.jpg")
-
 ```
 
 
@@ -399,11 +396,13 @@ def finish_masking(event):
 ```
 
 ### Output
+
 The output from interactive_ROI_app.py consists of sorted wateryear folders containing masked images, a dataframe linking every `mask_id` to its associated mask, and a dataframe linking date of image to `mask_id`.
 
-#### Example Wateryear output
+#### Example Wateryear Output
 
 Here is an example wateryear folder containing masked images.
+
 ```{r wateryear-folder, echo = FALSE}
 knitr::include_graphics("./imgs/wateryear_example_folder.png")
 
@@ -412,12 +411,14 @@ knitr::include_graphics("./imgs/wateryear_example_folder.png")
 #### Example Output for Dataframes
 
 Here is an example dataframe that stores each `mask_id` to its associated mask.
+
 ```{r Dataframe-id-mask, echo = FALSE}
 knitr::include_graphics("./imgs/maskid_mask.png")
 
 ```
 
-Here is an example dataframe that stores each `mask_id` to its associated date. 
+Here is an example dataframe that stores each `mask_id` to its associated date.
+
 ```{r Dataframe-date-id, echo = FALSE}
 knitr::include_graphics("./imgs/date_mask_csv_example.png")
 
