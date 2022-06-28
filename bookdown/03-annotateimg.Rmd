@@ -15,7 +15,7 @@ load project to load in a preexisting .json file. Otherwise, remove the demo ima
 and upload your own images using **add files**. 
 
 At any point during annotation, these files may be saved into a .json project using
-**Project>>Save** from the menu bar.
+**Project > Save** from the menu bar.
 
 ## Creating Attributes
 
@@ -27,20 +27,21 @@ including `ice_t` (transparent ice), `leaf_green`, `leaf_fall`, `open_water`, an
 `snow_o` (opaque snow), among others. 
 
 To load the attributes that we used in our project, clicking this [link](./imgs/hbwater_cameratrap_demo.json) will open a text file. Copy the contents
-of this file and save it as a `.json` file. Then, select load project from the menu bar.
+of this file and save it as a `.json` file. Then, select load project from the menu bar,
+and upload the `.json` file.
 
 ## Classify Pixels
 
 Classify pixels by dragging and clicking on the image to create boxes or shapes
-using the desired *region shape,* and then assigning them to attributes.
+using the desired **region shape**, and then assigning them to attributes.
 Repeat this process for all images in the folder, and export your annotations as a 
-**.json** or **.csv** file. See below for an example using VIA's demo file.
+`.json` or `.csv` file. See below for an example using VIA's demo file.
 
 ```{r knitr-via-demo, echo=FALSE}
 knitr::include_graphics("./imgs/viademo.png")
 ```
 
-If you must stop midway, save your project by clicking on the **settings** pane
+If you must stop midway, save your project by clicking on the **Settings** pane
 in the menu bar and following the instructions. This will allow you to load in
 your previously saved progress directly in the future.
 

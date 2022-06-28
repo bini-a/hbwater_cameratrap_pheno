@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-06-27" />
+<meta name="date" content="2022-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -211,8 +211,8 @@ however, the same general principles will still apply.</p>
 <h3><span class="header-section-number">2.0.1</span> Mount Google Drive<a href="rename-raw-images.html#mount-google-drive" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="rename-raw-images.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will connect to your Google Drive. It will ask you to allow access</span></span>
 <span id="cb2-2"><a href="rename-raw-images.html#cb2-2" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">&#39;/content/drive&#39;</span>, force_remount<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
-<p>When using Google Colaboratory, before performing any file operations, you must <em>mount</em> your personal Google Drive. Run the above code to allow access.</p>
-<p>Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname.</p>
+<p>When using Google Colaboratory, before performing any file operations, you must <em>mount</em> your personal Google Drive. Find the code chunk with the above code in Colab and run it to allow access.</p>
+<p>Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname (see below).</p>
 <p><img src="imgs/contentdrive.png" width="322" /></p>
 </div>
 <div id="copying-files" class="section level2 hasAnchor" number="2.1">
@@ -261,14 +261,14 @@ however, the same general principles will still apply.</p>
 </div>
 <div id="renaming-files" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Renaming Files<a href="rename-raw-images.html#renaming-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The renaming files script takes advantage of the <strong>Tesseract OCR Engine</strong> to extract
-the timestamp from the image. This string is then parsed to generate time series
+<p>The renaming files script takes advantage of the <strong>Tesseract OCR Engine</strong> to read
+the time stamp on the image. This string is then parsed to generate time series
 information. There are many complementary methods in this script; for more information,
 see documentation within the script itself.</p>
 <p>Be sure to allocate time for the script to run, especially on folders containing
 large amounts of image files<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>Additionally, the pixel parameters within <code>extract_timeStamp</code> are designed for
-the images taken by the field cameras used in our study. These will have to be
+the images taken by the field cameras used in our study. These will have to be manually
 <em>adjusted</em> for images with time series information contained elsewhere.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="rename-raw-images.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_timeStamp(pic_address):</span>
 <span id="cb6-2"><a href="rename-raw-images.html#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39;&#39;&#39;</span></span>
@@ -357,7 +357,7 @@ imported. Then, update the file paths<a href="#fn3" class="footnote-ref" id="fnr
 <span id="cb7-34"><a href="rename-raw-images.html#cb7-34" aria-hidden="true" tabindex="-1"></a>  rename_images(folder, fdr_name, fdr_dst, file_df <span class="op">=</span> file_df)</span></code></pre></div>
 <p>The script generates a pandas dataframe which contains the old filename,
 new filename, folder name containing the image, as well as the image <strong>status</strong> (whether
-or not it was renamed successfully). This dataframe is then exported to a <code>.csv</code> file in a user-specified destination.</p>
+or not it was renamed successfully). This dataframe is then exported to a <code>.csv</code> file in a user-specified destination. See below for an example.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="rename-raw-images.html#cb8-1" aria-hidden="true" tabindex="-1"></a>file_df <span class="op">=</span> pd.DataFrame(file_names_list, columns <span class="op">=</span> [<span class="st">&quot;old_name&quot;</span>, <span class="st">&quot;new_name&quot;</span>,<span class="st">&quot;status&quot;</span>, <span class="st">&quot;note&quot;</span>,<span class="st">&quot;old_folder&quot;</span>])</span>
 <span id="cb8-2"><a href="rename-raw-images.html#cb8-2" aria-hidden="true" tabindex="-1"></a>file_df.to_csv(dst<span class="op">+</span><span class="st">&quot;/&quot;</span><span class="op">+</span><span class="st">&quot;file_df.csv&quot;</span>)</span>
 <span id="cb8-3"><a href="rename-raw-images.html#cb8-3" aria-hidden="true" tabindex="-1"></a>file_df.head()</span></code></pre></div>
@@ -366,7 +366,7 @@ or not it was renamed successfully). This dataframe is then exported to a <code>
 <h3><span class="header-section-number">2.2.1</span> Manual Renames<a href="rename-raw-images.html#manual-renames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While this script works for the vast majority of images, occasionally some images
 will fail to rename correctly. For any files where the timestamp generated a file name
-which does not match a valid date, the below chunk of code will identify them.</p>
+which does not match a valid date, run the below chunk of code to identify them.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="rename-raw-images.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in created csv, returns file name and path if extracted timestamp is not in range</span></span>
 <span id="cb9-2"><a href="rename-raw-images.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="rename-raw-images.html#cb9-3" aria-hidden="true" tabindex="-1"></a>file_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;/content/drive/MyDrive/2_Camera Trap photos/project_dir/labeled_image_files/file_df.csv&quot;</span>)</span>
@@ -381,8 +381,8 @@ which does not match a valid date, the below chunk of code will identify them.</
 <span id="cb9-12"><a href="rename-raw-images.html#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Check day range</span></span>
 <span id="cb9-13"><a href="rename-raw-images.html#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">int</span>(row[<span class="st">&quot;new_name&quot;</span>][<span class="dv">15</span>:<span class="dv">17</span>]) <span class="op">&gt;</span> <span class="dv">31</span> <span class="kw">or</span> <span class="bu">int</span>(row[<span class="st">&quot;new_name&quot;</span>][<span class="dv">15</span>:<span class="dv">17</span>]) <span class="op">&lt;</span> <span class="dv">0</span>:</span>
 <span id="cb9-14"><a href="rename-raw-images.html#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(row[<span class="st">&quot;new_name&quot;</span>]<span class="op">+</span><span class="st">&quot; Day not in range, check name in folder :&quot;</span><span class="op">+</span>row[<span class="st">&quot;old_folder&quot;</span>])</span></code></pre></div>
-<p>The other common occurence is if the timestamp failed to generate altogether due
-to <code>pytesseract.image_to_string</code> failing. This is sometimes unavoidable and requires manual renaming of the file. However, this should not be a frequent occurence due to the built-in
+<p>Another common occurrence is when the timestamp failed to generate altogether due
+to <code>pytesseract.image_to_string</code> failing. This is sometimes unavoidable and requires manual renaming of the file. However, this should not be a frequent occurrence due to the built-in
 loop in <code>extract_timeStamp</code>.</p>
 
 </div>
