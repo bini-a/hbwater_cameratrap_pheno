@@ -297,6 +297,7 @@ def finish_masking(event):
     mask_df_dst = folder_path + "/" + "mask_df.csv"
     mask_df.to_csv(mask_df_dst)
     # print(mask_df.head())
+    print("mask_df saved to this folder {}".format(folder_path))
 
     # collect all information from ImageFile Objects
     image_file_info = pd.DataFrame(
@@ -309,7 +310,7 @@ def finish_masking(event):
     # list of water years
     list_wy = list(image_file_info.index.unique())
     print("STARTED SAVING")
-    print("This takes about 1 second per an image file")
+    print("Saving takes about 1 second per an image file")
 
     for water_year in list_wy:
         # Create folders for each water year
@@ -322,6 +323,7 @@ def finish_masking(event):
         # save a date_mask dataframe with columns date-> mask_id -> file name
         date_mask_df = df.reset_index()[["Date", "mask_id"]].set_index("Date")
         date_mask_df.to_csv(wy_dest + "/" + "date_mask.csv")
+        print("date_mask.csv saved to the folder {}".format(wy_dest))
 
         # mask images within a selected water_year
         for index, row in df.iterrows():
@@ -385,7 +387,7 @@ image_folder = glob2.glob(folder_path + "/*")
 
 # Loop over all image files, Create ImageFile objects and save to image_file_list
 image_file_list = []
-for filename in image_folder[:10]:
+for filename in image_folder[:50]:
     filetype = filename[-4:]
     # Check if the file name ends with ".JPG" or ".jpg"
     if filetype.lower() != ".jpg":
