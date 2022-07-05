@@ -424,6 +424,6 @@ knitr::include_graphics("./imgs/date_mask_csv_example.png")
 
 ```
 
-[^1]: Our version of RoiPoly is derived from jdoepfert's roipoly.py, whose module can be found on at "https://github.com/jdoepfert/roipoly.py"
+[^1]: Our version of RoiPoly is derived from jdoepfert's roipoly.py, whose module can be found on at https://github.com/jdoepfert/roipoly.py
 
 [^2]: Information of matplotlib backends can be found at https://matplotlib.org/stable/users/explain/backends.html
