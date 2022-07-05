@@ -7,29 +7,6 @@ was taken at as well as time-series image metadata.
 These steps were designed to process files stored in a shared Google Drive. Before renaming images contained in a local directory, modifications to the script will need to be made; 
 however, the same general principles will still apply.
 
-### Mount Google Drive
-
-```{python, eval = FALSE}
-# This will connect to your Google Drive. It will ask you to allow access
-drive.mount('/content/drive', force_remount=True)
-
-```
-
-
-When using Google Colaboratory, before performing any file operations, you must *mount* your personal Google Drive. Find the code chunk with the above code in Colab and run it to allow access.
-
-Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname (see below).
-
-```{r image, echo = FALSE}
-knitr::include_graphics("./imgs/contentdrive.png")
-#Update file path if needed - all images in imgs folder
-
-```
-
-
-## Copying Files
-
-This preliminary step is used when a backup or copy of the original data is needed. It will copy all files in the source directory not present in the target directory. 
 
 ### Load Packages
 
@@ -51,7 +28,28 @@ from glob import glob
 ```
 
 
-### Copying Files
+### Mount Google Drive
+
+```{python, eval = FALSE}
+# This will connect to your Google Drive. It will ask you to allow access
+drive.mount('/content/drive', force_remount=True)
+
+```
+
+When using Google Colaboratory, before performing any file operations, you must *mount* your personal Google Drive. Find the code chunk with the above code in Colab and run it to allow access.
+
+Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname (see below).
+
+```{r image, echo = FALSE}
+knitr::include_graphics("./imgs/contentdrive.png")
+#Update file path if needed - all images in imgs folder
+
+```
+
+
+## Copying Files
+
+This preliminary step is used when a backup or copy of the original data is needed. It will copy all files in the source directory not present in the target directory. 
 
 This method uses shutil’s `copytree` function, which blanket copies all files within a specified directory. To handle issues caused by direct copying of files versus copying of subdirectories, these are copied separate from each other within the code. 
 
@@ -74,8 +72,9 @@ else:
   
 ```
 
-
 Copying **any** Google files, be it Google Docs, Slides, Sheets, Drawings, etc. must be done manually as these files are special and not able to be copied using shutil^[For more information, see the comments within the script and text blocks in the Jupyter Notebook.]. For any additional file extensions to avoid copying, specify them as arguments for `shutil.ignore_patterns`.
+
+Because of `shutil` and `os`, this same method can also be used to copy local files without requiring any modifications beyond changing the file paths for the source and destination directories.
 
 ### Main Method
 
@@ -102,8 +101,10 @@ correct timestamp if it is not found initially. However, this will increase the 
 of files which failed to be renamed correctly.] 
 
 Additionally, the pixel parameters within `extract_timeStamp` are designed for
-the images taken by the field cameras used in our study. These will have to be manually
-*adjusted* for images with time series information contained elsewhere.
+the images taken by the Bushnell field cameras used in our study. These will have to be manually
+*adjusted* for images with time series information contained elsewhere. If the images
+do not contain timestamps, the script must be modified to follow a separate file
+naming convention in the `generate_picName` function.
 
 
 ```{python extract-timestamp, eval = FALSE}
