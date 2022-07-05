@@ -38,7 +38,9 @@ library(reticulate)
 
 ## Introduction 
 
-The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. Our team's images are from the Hubbard Brook Experimental Forest in New Hampshire. Nine camera traps in as many watersheds have collected images daily for three years (see below for an example image) from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product. However, our software can be viably used for any class of field image classification.
+The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. 
+
+Our team's images are from the Hubbard Brook Experimental Forest in New Hampshire. Nine camera traps in as many watersheds have taken images daily for three years (see below for an example image) from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product. However, our software can be viably used for any class of field image classification.
 
 
 ```{r image-display, echo=FALSE, message=FALSE, warning=FALSE}
