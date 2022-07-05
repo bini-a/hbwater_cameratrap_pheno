@@ -7,8 +7,9 @@
 .idea
 data_der/
 data_der.zip
-*.DS_store
+*.DS_Store
 *.pyc
+scripts/sandbox/ML/example_data/*.jpg
 # Byte-compiled / optimized / DLL files
 **/__pycache__
 *.py[cod]
