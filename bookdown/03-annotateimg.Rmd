@@ -1,11 +1,13 @@
 # Classifying Image Attributes with VIA
 
-After completing image masking, the next step is done entirely in VGG Image Annotator.
+After completing image masking, the next step is done entirely in VGG Image Annotator (VIA).
 This is an HTML software found online, and the demo can be accessed [here](https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html). It should look like this:
 
 ```{r knitr-via-preview, echo=FALSE}
 knitr::include_graphics("./imgs/VIASoftware.png")
 ```
+
+In our data pipeline, fully classified images become the training data for our machine learning model.
 
 
 ## Creating Project
@@ -19,16 +21,13 @@ At any point during annotation, these files may be saved into a .json project us
 
 ## Creating Attributes
 
-To create attributes for pixel classification, navigate to the bottom left-hand side
+The next step is to create 'attributes,' which are effectively characteristics for pixels
+in the image. To create attributes for pixel classification, navigate to the bottom left-hand side
 of the screen to name and assign characteristics for the attribute. 
 
-In our project, the classified images outputted from VIA became the *training data* for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
-including `ice_t` (transparent ice), `leaf_green`, `leaf_fall`, `open_water`, and
-`snow_o` (opaque snow), among others. 
+More information about declaring attributes as well as answers to other questions you may have about
+using VIA can be found on the user guide, available [here](https://www.robots.ox.ac.uk/~vgg/software/via/docs/user_guide.html).
 
-To load the attributes that we used in our project, clicking this [link](./imgs/hbwater_cameratrap_demo.json) will open a text file. Copy the contents
-of this file and save it as a `.json` file. Then, select load project from the menu bar,
-and upload the `.json` file.
 
 ## Classify Pixels
 
@@ -43,6 +42,19 @@ knitr::include_graphics("./imgs/viademo.png")
 
 If you must stop midway, save your project by clicking on the **Settings** pane
 in the menu bar and following the instructions. This will allow you to load in
-your previously saved progress directly in the future.
+your previously saved progress directly in the future, rather than starting from the
+demo.
 
+
+## For Hubbard Brook Users
+
+In our project, the classified images outputted from VIA became the *training data* for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
+including `ice_t` (transparent ice), `leaf_green`, `leaf_fall`, `open_water`, and
+`snow_o` (opaque snow), among others. 
+
+To load the attributes that we used in our project, clicking this [link](./imgs/hbwater_cameratrap_demo.json) will open a text file. Copy the contents
+of this file and save it as a `.json` file. Then, select load project from the menu bar,
+and upload the `.json` file. This loads a sample image and all 12 attribute classifications.
+
+Ideally, for each image, obtain at least 20 labels.
 
