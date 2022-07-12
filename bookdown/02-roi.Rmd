@@ -99,21 +99,23 @@ This will close the ROI window and generate data frames containing information a
 
 ### Output
 
-Here is an example wateryear folder containing masked images.
+After you are done drawing ROIs, the script will generate three seperate outputs automatically. See the photos below for examples.
+
+The first is a wateryear folder containing masked images.
 
 ```{r wateryear-folder, echo = FALSE}
 knitr::include_graphics("./imgs/wateryear_example_folder.png")
 
 ```
 
-Here is an example dataframe that stores each `mask_id` to its associated mask.
+The second is a dataframe that stores each `mask_id` to its associated mask.
 
 ```{r Dataframe-id-mask, echo = FALSE}
 knitr::include_graphics("./imgs/maskid_mask.png")
 
 ```
 
-Here is an example dataframe that stores each `mask_id` to its associated date.
+Finally, the script will generate a dataframe that stores each `mask_id` to its associated date.
 
 ```{r Dataframe-date-id, echo = FALSE}
 knitr::include_graphics("./imgs/date_mask_csv_example.png")

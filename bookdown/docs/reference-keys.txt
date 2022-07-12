@@ -20,11 +20,11 @@ selecting-region-of-interest
 using-the-script
 import-packages
 set-folder-path
-draw-roi
+drawing-rois
+output
 roipoly-functionalities
 imagefile-class
 first-roi-and-masking-function
-output
 documentation
 classifying-image-attributes-with-via
 creating-project
