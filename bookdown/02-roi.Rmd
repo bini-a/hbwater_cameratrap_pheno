@@ -55,7 +55,7 @@ image_folder = glob2.glob(folder_path + "/*")
 ```
 
 
-### Draw ROI
+### Drawing ROIs
 
 After setting the folder path, **run** the script to open a popup window -- this is the `matplotlib` interactive interface. It should display the first image in `image_folder` and give you the option to select an ROI. 
 
@@ -95,7 +95,31 @@ knitr::include_graphics("./imgs/finishmasking.jpg")
 
 ```
 
-This will close the ROI window and generate data frames containing information about the masked images, as well as a folder containing the masked images (see **Section 3.2.3** for more information on the outputs).
+This will close the ROI window and generate data frames containing information about the masked images, as well as a folder containing the masked images.
+
+### Output
+
+Here is an example wateryear folder containing masked images.
+
+```{r wateryear-folder, echo = FALSE}
+knitr::include_graphics("./imgs/wateryear_example_folder.png")
+
+```
+
+Here is an example dataframe that stores each `mask_id` to its associated mask.
+
+```{r Dataframe-id-mask, echo = FALSE}
+knitr::include_graphics("./imgs/maskid_mask.png")
+
+```
+
+Here is an example dataframe that stores each `mask_id` to its associated date.
+
+```{r Dataframe-date-id, echo = FALSE}
+knitr::include_graphics("./imgs/date_mask_csv_example.png")
+
+```
+
 
 
 ## RoiPoly Functionalities
@@ -369,32 +393,6 @@ def finish_masking(event):
     plt.close()
 
 ```
-
-### Output
-
-The output from interactive_ROI_app.py consists of a) sorted water year folders containing masked images, b) a dataframe linking every `mask_id` to its associated mask, and c) a dataframe linking date of image to `mask_id`.
-
-Here is an example wateryear folder containing masked images.
-
-```{r wateryear-folder, echo = FALSE}
-knitr::include_graphics("./imgs/wateryear_example_folder.png")
-
-```
-
-Here is an example dataframe that stores each `mask_id` to its associated mask.
-
-```{r Dataframe-id-mask, echo = FALSE}
-knitr::include_graphics("./imgs/maskid_mask.png")
-
-```
-
-Here is an example dataframe that stores each `mask_id` to its associated date.
-
-```{r Dataframe-date-id, echo = FALSE}
-knitr::include_graphics("./imgs/date_mask_csv_example.png")
-
-```
-
 
 ## Documentation
 
