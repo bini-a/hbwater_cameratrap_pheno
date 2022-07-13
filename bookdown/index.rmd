@@ -49,7 +49,7 @@ knitr::include_graphics("./imgs/Hbwtr_w1_20200329_120457.JPG")
 
 ## How to Use This Book
 
-The data pipeline referenced in this book was originally designed for use by scientists studying field camera images at Hubbard Brook Experimental Forest. However, our software can be viably used for classification with other types of field images, although this may require modifications to the scripts in their current form.
+The data pipeline referenced in this book was originally designed for use by scientists studying field camera images at Hubbard Brook Experimental Forest. However, our software can be viably used for classification with other types of field images.
 
 Each chapter will provide a broad overview with instructions on applying our data pipeline for generalized applications. Instructions for Hubbard Brook users (with images stored)
 in Google Drive will be kept separate from instructions for users with other types of images,
