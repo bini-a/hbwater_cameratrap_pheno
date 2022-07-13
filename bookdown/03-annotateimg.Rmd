@@ -33,8 +33,7 @@ using VIA can be found on the user guide, available [here](https://www.robots.ox
 
 Classify pixels by dragging and clicking on the image to create boxes or shapes
 using the desired **region shape**, and then assign them to attributes.
-Repeat this process for all images in the folder, and export your annotations as a 
-`.json` or `.csv` file. See below for an example using VIA's demo file.
+Repeat this process for all images in the folder. See below for an example using VIA's demo file.
 
 ```{r knitr-via-demo, echo=FALSE}
 knitr::include_graphics("./imgs/viademo.png")
@@ -56,7 +55,7 @@ knitr::include_graphics("./imgs/outputcsvimg.png")
 
 ## For Hubbard Brook Users
 
-In our project, the classified images outputted from VIA became the *training data* for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
+In our project, the classified images outputted from VIA are the *training data* for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
 including `ice_t` (transparent ice), `leaf_green`, `leaf_fall`, `open_water`, and
 `snow_o` (opaque snow), among others. 
 
