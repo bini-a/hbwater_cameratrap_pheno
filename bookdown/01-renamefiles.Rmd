@@ -323,7 +323,7 @@ Our script is only able to extract the timestamp if it is present within the ima
 If the image you use does not contain any time-series data, we recommend removing the `extract_timeStamp` method and changing the file naming format to reflect that.
 
 After these changes are made, the script should again function identically to
-the one housed in Google Colab. RUpdate the file path and run the main method to
+the one housed in Google Colab. Update the file path and run the main method to
 rename your files.
 
 The script will occasionally throw some unavoidable errors, such as the `image_to_string` method failing to extract a timestamp. To deal
