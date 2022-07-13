@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-07-11" />
+<meta name="date" content="2022-07-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,13 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#import-packages"><i class="fa fa-check"></i><b>3.1.1</b> Import Packages</a></li>
 <li class="chapter" data-level="3.1.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#set-folder-path"><i class="fa fa-check"></i><b>3.1.2</b> Set Folder Path</a></li>
-<li class="chapter" data-level="3.1.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#draw-roi"><i class="fa fa-check"></i><b>3.1.3</b> Draw ROI</a></li>
+<li class="chapter" data-level="3.1.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#drawing-rois"><i class="fa fa-check"></i><b>3.1.3</b> Drawing ROIs</a></li>
+<li class="chapter" data-level="3.1.4" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#output"><i class="fa fa-check"></i><b>3.1.4</b> Output</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#roipoly-functionalities"><i class="fa fa-check"></i><b>3.2</b> RoiPoly Functionalities</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#imagefile-class"><i class="fa fa-check"></i><b>3.2.1</b> ImageFile Class</a></li>
 <li class="chapter" data-level="3.2.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#first-roi-and-masking-function"><i class="fa fa-check"></i><b>3.2.2</b> First ROI and Masking Function</a></li>
-<li class="chapter" data-level="3.2.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#output"><i class="fa fa-check"></i><b>3.2.3</b> Output</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#documentation"><i class="fa fa-check"></i><b>3.3</b> Documentation</a></li>
 </ul></li>
@@ -201,11 +201,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rename-raw-images" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Rename Raw Images<a href="rename-raw-images.html#rename-raw-images" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers,
-following this step, they will contain information about the watershed the photo
-was taken at as well as time-series image metadata.</p>
+<p>Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.</p>
 <p>These steps were designed to process files stored in a shared Google Drive by
-running the script in <em>Google Colaboratory</em>. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer, see <strong>section 1.2</strong>.</p>
+running the script in <em>Google Colaboratory</em>. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer rather than in Google Drive, see <strong>Section 1.2</strong>.</p>
 <div id="google-drive-files" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Google Drive Files<a href="rename-raw-images.html#google-drive-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="load-packages" class="section level3 hasAnchor" number="2.1.1">
@@ -260,8 +258,7 @@ running the script in <em>Google Colaboratory</em>. Before renaming images conta
 <div id="renaming-files" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Renaming Files<a href="rename-raw-images.html#renaming-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The renaming files script takes advantage of the <strong>Tesseract OCR Engine</strong> to read
-the time stamp on the image. This string is then parsed to generate time series
-information. There are many complementary methods in this script; for more information, see documentation within the script itself.</p>
+the time stamp on the image. This string is then parsed to generate time series information. There are many complementary methods in this script; for more information, see documentation within the script itself.</p>
 <p>Be sure to allocate time for the script to run, especially on folders containing
 large amounts of image files<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <p>The pixel parameters within <code>extract_timeStamp</code> are designed for the images taken by the Bushnell field cameras used in our study.</p>

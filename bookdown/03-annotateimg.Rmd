@@ -1,22 +1,22 @@
 # Classifying Image Attributes with VIA
 
-After completing image masking, the next step is done entirely in VGG Image Annotator (VIA).
+After completing image masking, the next step of image classification is done entirely in VGG Image Annotator (VIA).
 This is an HTML software found online, and the demo can be accessed [here](https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html). It should look like this:
 
 ```{r knitr-via-preview, echo=FALSE}
 knitr::include_graphics("./imgs/VIASoftware.png")
 ```
 
-In our data pipeline, fully classified images become the training data for our machine learning model.
+In our data pipeline, fully classified images become the training data for our machine learning model. Thus, it is important to have well-annotated images before proceeding onto the final step.
 
 
 ## Creating Project
 
-If a project already exists, navigate to the project tab in the menu bar and click
+If a project already exists in VIA, navigate to the project tab in the menu bar and click
 load project to load in a preexisting .json file. Otherwise, remove the demo images
 and upload your own images using **add files**. 
 
-At any point during annotation, these files may be saved into a .json project using
+At any point during annotation, these files may be saved into a `.json` project using
 **Project > Save** from the menu bar.
 
 ## Creating Attributes
@@ -32,7 +32,7 @@ using VIA can be found on the user guide, available [here](https://www.robots.ox
 ## Classify Pixels
 
 Classify pixels by dragging and clicking on the image to create boxes or shapes
-using the desired **region shape**, and then assigning them to attributes.
+using the desired **region shape**, and then assign them to attributes.
 Repeat this process for all images in the folder, and export your annotations as a 
 `.json` or `.csv` file. See below for an example using VIA's demo file.
 

@@ -1,11 +1,9 @@
 # Rename Raw Images
 
-Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers,
-following this step, they will contain information about the watershed the photo
-was taken at as well as time-series image metadata.
+Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.
 
 These steps were designed to process files stored in a shared Google Drive by
-running the script in *Google Colaboratory*. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer, see **section 1.2**. 
+running the script in *Google Colaboratory*. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer rather than in Google Drive, see **Section 1.2**. 
 
 
 ## Google Drive Files
@@ -89,8 +87,7 @@ copy_files(*args)
 ### Renaming Files
 
 The renaming files script takes advantage of the **Tesseract OCR Engine** to read
-the time stamp on the image. This string is then parsed to generate time series
-information. There are many complementary methods in this script; for more information, see documentation within the script itself. 
+the time stamp on the image. This string is then parsed to generate time series information. There are many complementary methods in this script; for more information, see documentation within the script itself. 
 
 Be sure to allocate time for the script to run, especially on folders containing
 large amounts of image files^[If you are looking to reduce the script's runtime, one method is to remove the loop within `extract_timeStamp` which searches multiple times for the correct timestamp if it is not found initially. However, this will increase the number of files which failed to be renamed correctly.] 

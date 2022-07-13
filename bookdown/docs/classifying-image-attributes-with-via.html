@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-07-11" />
+<meta name="date" content="2022-07-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,13 +162,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#import-packages"><i class="fa fa-check"></i><b>3.1.1</b> Import Packages</a></li>
 <li class="chapter" data-level="3.1.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#set-folder-path"><i class="fa fa-check"></i><b>3.1.2</b> Set Folder Path</a></li>
-<li class="chapter" data-level="3.1.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#draw-roi"><i class="fa fa-check"></i><b>3.1.3</b> Draw ROI</a></li>
+<li class="chapter" data-level="3.1.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#drawing-rois"><i class="fa fa-check"></i><b>3.1.3</b> Drawing ROIs</a></li>
+<li class="chapter" data-level="3.1.4" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#output"><i class="fa fa-check"></i><b>3.1.4</b> Output</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#roipoly-functionalities"><i class="fa fa-check"></i><b>3.2</b> RoiPoly Functionalities</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#imagefile-class"><i class="fa fa-check"></i><b>3.2.1</b> ImageFile Class</a></li>
 <li class="chapter" data-level="3.2.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#first-roi-and-masking-function"><i class="fa fa-check"></i><b>3.2.2</b> First ROI and Masking Function</a></li>
-<li class="chapter" data-level="3.2.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#output"><i class="fa fa-check"></i><b>3.2.3</b> Output</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#documentation"><i class="fa fa-check"></i><b>3.3</b> Documentation</a></li>
 </ul></li>
@@ -201,16 +201,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="classifying-image-attributes-with-via" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Classifying Image Attributes with VIA<a href="classifying-image-attributes-with-via.html#classifying-image-attributes-with-via" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>After completing image masking, the next step is done entirely in VGG Image Annotator (VIA).
+<p>After completing image masking, the next step of image classification is done entirely in VGG Image Annotator (VIA).
 This is an HTML software found online, and the demo can be accessed <a href="https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html">here</a>. It should look like this:</p>
 <p><img src="imgs/VIASoftware.png" width="1440" /></p>
-<p>In our data pipeline, fully classified images become the training data for our machine learning model.</p>
+<p>In our data pipeline, fully classified images become the training data for our machine learning model. Thus, it is important to have well-annotated images before proceeding onto the final step.</p>
 <div id="creating-project" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Creating Project<a href="classifying-image-attributes-with-via.html#creating-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If a project already exists, navigate to the project tab in the menu bar and click
+<p>If a project already exists in VIA, navigate to the project tab in the menu bar and click
 load project to load in a preexisting .json file. Otherwise, remove the demo images
 and upload your own images using <strong>add files</strong>.</p>
-<p>At any point during annotation, these files may be saved into a .json project using
+<p>At any point during annotation, these files may be saved into a <code>.json</code> project using
 <strong>Project &gt; Save</strong> from the menu bar.</p>
 </div>
 <div id="creating-attributes" class="section level2 hasAnchor" number="4.2">
@@ -224,7 +224,7 @@ using VIA can be found on the user guide, available <a href="https://www.robots.
 <div id="classify-pixels" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Classify Pixels<a href="classifying-image-attributes-with-via.html#classify-pixels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Classify pixels by dragging and clicking on the image to create boxes or shapes
-using the desired <strong>region shape</strong>, and then assigning them to attributes.
+using the desired <strong>region shape</strong>, and then assign them to attributes.
 Repeat this process for all images in the folder, and export your annotations as a
 <code>.json</code> or <code>.csv</code> file. See below for an example using VIA’s demo file.</p>
 <p><img src="imgs/viademo.png" width="1108" /></p>
