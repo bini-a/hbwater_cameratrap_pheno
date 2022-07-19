@@ -4,6 +4,7 @@
 .RData
 .Ruserdata
 .ipynb_checkpoints
+.vscode
 .idea
 data_der/
 data_der.zip
