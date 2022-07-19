@@ -27,15 +27,15 @@ Tasks | People | Step
 ~~prepare presentation for 6/21~~   | HS, BG, HO | **Other**
 figure out our file hosting options: server, google drive, local files, etc.   | AT, WS | **3**
 ~~finish minimum viable product (Bookdown) first draft, setup Github pages~~ | HS, HO | **3**
-edit bookdown to support generalized usage | HS, HO, BG | **4**
-explore using Django Framework for scripts (*low priority*)| HO, HS, BG | **?**
-familiarize with ML algorithm used | HO, HS, BG | **?**
+~~edit bookdown to support generalized usage~~ | HS, HO, BG | **4**
+~~familiarize with ML algorithm used~~ | HO, HS, BG | **5**
+~~train and test random forest classifier~~ | HO, HS, BG | **5**
 
 
 ## Future Objectives
 Tasks | People | Step
 ------- | -------- | --------
-create walkthrough with example files as both proof-of-concept for our data pipeline, and as a walkthrough for future users | XX | **7**
+~~create walkthrough with example files as both proof-of-concept for our data pipeline, and as a walkthrough for future users~~ | XX | **7**
 export Jupyter notebook to *.py* files  | XX | **8**
 
 
