@@ -44,7 +44,7 @@ in the menu bar and following the instructions. This will allow you to load in
 your previously saved progress directly in the future, rather than starting from the
 demo.
 
-When finished, export your annotations as a `.csv` and `.json` file for use in the machine learning model. Here is an example CSV-file output, containg information about the file and
+When finished, export your annotations as a `.csv` and `.json` file for use in the machine learning model. Here is an example CSV-file output, containing information about the file and
 region attributes.
 
 ```{r csv-file-output-img, echo=FALSE}
