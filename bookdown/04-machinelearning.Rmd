@@ -6,7 +6,7 @@ The script for running the machine learning model is `ml_model_final.ipynb` (hos
 
 ## Introduction to Random Forest
 
-Our machine learning model used a random forest model, which is a type of ensemble learning method for classification. It works by taking a set number of decision trees all operating independently, and outputting the result selected by the largest number of trees.
+Our machine learning model used a random forest model, which is a type of ensemble learning method for classification. It works by taking a set number of decision trees all operating independently on a random subset of the data, and outputting the result selected by the largest number of trees.
 
 We chose a RF model for machine learning because it typically does a better job of not **overfitting**. This was important for our study at Hubbard Brook, because our images contained a large class imbalance. See the image below for an example class distribution (opaque snow and dark open water were far more prevalent than riffles/green leaves at this location).
 
@@ -15,7 +15,7 @@ knitr::include_graphics("./imgs/pixelclasses.png")
 
 ```
 
-Other benefits of the random forest model are that it easily provides variable/feature importance, which is useful when evaluating the moderl's performance. Additionally, we have tried an unsupervised learning approach with a convolutional neural network (CNN), which did not perform well on images with both leaves and ice.
+Other benefits of the random forest model are that it easily provides variable/feature importance, which is useful when evaluating the model's performance. Additionally, we have tried an unsupervised learning approach with a convolutional neural network (CNN), which did not perform well on images with both leaves and ice.
 
 
 ## Using the Script
@@ -43,7 +43,7 @@ warnings.filterwarnings("ignore")
 
 The first step is to wrangle the data so it can be fed into the model. Read in your `.csv` files and run all the code chunks 
 
-The below code chunk contains the functions for data wrangling which create data and temperature columns for the dataframe, as well as sampling from each class.
+The below code chunk contains the function **wrangle_data** for data wrangling which create data and temperature columns for the dataframe. Additionally, the function **pick_samples** tries to combat our class imbalances by creating a max class size and then returning a sampled dataframe.
 
 ```{python data-wrangling, eval=FALSE}
 def wrangle_data(df):
@@ -75,7 +75,7 @@ def pick_samples(df):
 
 ```
 
-After the data wrangling is complete, the notebook first runs the model - the low accuracy will be corrected through the next step of hyperparameter tuning. 
+After the data wrangling is complete, the notebook first runs the model - a low accuracy will be corrected through the next step of hyperparameter tuning. 
 
 
 ### Hyperparameter Tuning
@@ -83,8 +83,10 @@ After the data wrangling is complete, the notebook first runs the model - the lo
 Hyperparameter tuning is the process which helps select the optimal model architecture. For instance, one such question is: how many trees should I include in my random forest?
 
 We used two tuning methods, grid search and random search. 
-- Grid search builds a model for each one of the possible hyperparameter values, and selects the model with the best results.
-- Random search defines distributions for the hyperparameters, and not all values are tested - values tested are selected at random. 
+
+Grid search builds a model for all combinations of provided hyperparameter values, and selects the model with the best results through cross validation. Cross validation checks the performance of each combination by analyzing partitions of data and averaging the overall error estimate.
+
+Random search defines distributions for the hyperparameters, and not all values are tested - values tested are selected at random. 
 
 
 ### Training Random Forest Model
@@ -187,6 +189,11 @@ knitr::include_graphics("./imgs/leafrock_output.png")
 
 ```
 
+Another place our model breaks down is wrongly classifying white riffles in water as ice, or wrongly classifying an unedited tube as seen here as ice.
+```{r misclassified-tube-image, echo=FALSE, out.width="200%"}
+knitr::include_graphics("./imgs/misclassified_hose W3 20190618.png")
+
+```
 Thus, in the future, exposing the model to more training data with these classes can improve its accuracy. Additionally, the model can be expanded to differentiate between different types of ice, which can be of use to researchers studying ice jams - this is just one of many potential changes.
 
 
