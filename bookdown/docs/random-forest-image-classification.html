@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -216,10 +216,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 The script for running the machine learning model is <code>ml_model_final.ipynb</code> (hosted in Jupyter Notebook).</p>
 <div id="introduction-to-random-forest" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Introduction to Random Forest<a href="random-forest-image-classification.html#introduction-to-random-forest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Our machine learning model used a random forest model, which is a type of ensemble learning method for classification. It works by taking a set number of decision trees all operating independently, and outputting the result selected by the largest number of trees.</p>
+<p>Our machine learning model used a random forest model, which is a type of ensemble learning method for classification. It works by taking a set number of decision trees all operating independently on a random subset of the data, and outputting the result selected by the largest number of trees.</p>
 <p>We chose a RF model for machine learning because it typically does a better job of not <strong>overfitting</strong>. This was important for our study at Hubbard Brook, because our images contained a large class imbalance. See the image below for an example class distribution (opaque snow and dark open water were far more prevalent than riffles/green leaves at this location).</p>
 <p><img src="imgs/pixelclasses.png" width="200%" /></p>
-<p>Other benefits of the random forest model are that it easily provides variable/feature importance, which is useful when evaluating the moderl’s performance. Additionally, we have tried an unsupervised learning approach with a convolutional neural network (CNN), which did not perform well on images with both leaves and ice.</p>
+<p>Other benefits of the random forest model are that it easily provides variable/feature importance, which is useful when evaluating the model’s performance. Additionally, we have tried an unsupervised learning approach with a convolutional neural network (CNN), which did not perform well on images with both leaves and ice.</p>
 </div>
 <div id="using-the-script-1" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Using the Script<a href="random-forest-image-classification.html#using-the-script-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -240,7 +240,7 @@ The script for running the machine learning model is <code>ml_model_final.ipynb<
 <span id="cb22-12"><a href="random-forest-image-classification.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb22-13"><a href="random-forest-image-classification.html#cb22-13" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>)</span></code></pre></div>
 <p>The first step is to wrangle the data so it can be fed into the model. Read in your <code>.csv</code> files and run all the code chunks</p>
-<p>The below code chunk contains the functions for data wrangling which create data and temperature columns for the dataframe, as well as sampling from each class.</p>
+<p>The below code chunk contains the function <strong>wrangle_data</strong> for data wrangling which create data and temperature columns for the dataframe. Additionally, the function <strong>pick_samples</strong> tries to combat our class imbalances by creating a max class size and then returning a sampled dataframe.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="random-forest-image-classification.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wrangle_data(df):</span>
 <span id="cb23-2"><a href="random-forest-image-classification.html#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39;&#39;&#39;</span></span>
 <span id="cb23-3"><a href="random-forest-image-classification.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Create date and temperature columns for dataframes</span></span>
@@ -267,14 +267,14 @@ The script for running the machine learning model is <code>ml_model_final.ipynb<
 <span id="cb23-24"><a href="random-forest-image-classification.html#cb23-24" aria-hidden="true" tabindex="-1"></a>            sampled_df <span class="op">=</span> pd.concat([sampled_df,curr_group])</span>
 <span id="cb23-25"><a href="random-forest-image-classification.html#cb23-25" aria-hidden="true" tabindex="-1"></a>    sampled_df.drop_duplicates(inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb23-26"><a href="random-forest-image-classification.html#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sampled_df</span></code></pre></div>
-<p>After the data wrangling is complete, the notebook first runs the model - the low accuracy will be corrected through the next step of hyperparameter tuning.</p>
+<p>After the data wrangling is complete, the notebook first runs the model - a low accuracy will be corrected through the next step of hyperparameter tuning.</p>
 </div>
 <div id="hyperparameter-tuning" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Hyperparameter Tuning<a href="random-forest-image-classification.html#hyperparameter-tuning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Hyperparameter tuning is the process which helps select the optimal model architecture. For instance, one such question is: how many trees should I include in my random forest?</p>
-<p>We used two tuning methods, grid search and random search.
-- Grid search builds a model for each one of the possible hyperparameter values, and selects the model with the best results.
-- Random search defines distributions for the hyperparameters, and not all values are tested - values tested are selected at random.</p>
+<p>We used two tuning methods, grid search and random search.</p>
+<p>Grid search builds a model for all combinations of provided hyperparameter values, and selects the model with the best results through cross validation. Cross validation checks the performance of each combination by analyzing partitions of data and averaging the overall error estimate.</p>
+<p>Random search defines distributions for the hyperparameters, and not all values are tested - values tested are selected at random.</p>
 </div>
 <div id="training-random-forest-model" class="section level3 hasAnchor" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Training Random Forest Model<a href="random-forest-image-classification.html#training-random-forest-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -356,7 +356,9 @@ The script for running the machine learning model is <code>ml_model_final.ipynb<
 <h2><span class="header-section-number">5.3</span> Future Improvements<a href="random-forest-image-classification.html#future-improvements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>While our model achieved a high accuracy and recall of 96% for our images, there are still areas for fine-tuning and improvement. For one, the model was occasionally less accurate when attempting to differentiate between water and leaves/rocks in the stream channel, as well as other classes less prevalent in the training set. This is the case in the image here:</p>
 <p><img src="imgs/leafrock_output.png" width="200%" /></p>
-<p>Thus, in the future, exposing the model to more training data with these classes can improve its accuracy. Additionally, the model can be expanded to differentiate between different types of ice, which can be of use to researchers studying ice jams - this is just one of many potential changes.</p>
+<p>Another place our model breaks down is wrongly classifying white riffles in water as ice, or wrongly classifying an unedited tube as seen here as ice.
+<img src="imgs/misclassified_hose%20W3%2020190618.png" width="200%" />
+Thus, in the future, exposing the model to more training data with these classes can improve its accuracy. Additionally, the model can be expanded to differentiate between different types of ice, which can be of use to researchers studying ice jams - this is just one of many potential changes.</p>
 
 </div>
 </div>
