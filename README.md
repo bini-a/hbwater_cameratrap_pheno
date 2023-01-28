@@ -1,20 +1,20 @@
 # hbwater_cameratrap_pheno
-Building a pipeline for processing HB Water aquatic camera trap photos for machine learning, with hopes to support further efforts to produce models from similar datasets.
+Building a Data Pipeline for processing Hubbard Brook  Water aquatic camera trap photos for machine learning, that can be extended to produce models from similar datasets.
 
 
 ## Project Steps 
-1. image data re-organization 
-2. ROI  
-3. project file organization, structure, and primary host - GDrive? Server?
-4. created inverted masked images
-5. classify pixels in image using image annotator 
-6. run random forest model
-7. create data product: markdown
-8. create data product: application
+1. Image data re-organization 
+2. Region of Interest(ROI)  
+3. Project File organization
+4. Creation of inverted masked images
+5. Creation of Training Data sets using Image Annotation
+6. Building Machine Learning Classification Model
+7. Creation of Streamlied Data Pipeline for Quantiative Prediction and Additional Training
+8. Creation of accompanying data product: Bookdown, Application, Demo
 
 ## Code Structure
-- scripts/01-Rename --> renaming and organizing image files structure
-- scripts/02-ROI ---> Building an interactive application to allow selection of Region of Interest in image files
-- scripts/03-ML ----> Running machine learning model to predict ice/snow coverage and produce time series analysis
-- data -> passing throgh series of stages from raw ->derived -> munged
-- bookdown --> markdown tutorial on how to use this product and documenation of the workflow of the data pipeline
+- Scripts/01-Rename -> renaming and organizing image files structure
+- Scripts/02-ROI -> Building an interactive application to allow selection of Region of Interest in image files
+- Scripts/03-ML -> Running machine learning model to predict ice/snow coverage and produce time series analysis
+- Data -> passing throgh series of stages from raw ->derived -> munged
+- Bookdown -> markdown tutorial on how to use this product and documenation of the workflow of the data pipeline
