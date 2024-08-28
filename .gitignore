@@ -14,3 +14,6 @@ scripts/sandbox/ML/example_data/*.jpg
 # Byte-compiled / optimized / DLL files
 **/__pycache__
 *.py[cod]
+*.jpg
+data/munged/
+example_data/

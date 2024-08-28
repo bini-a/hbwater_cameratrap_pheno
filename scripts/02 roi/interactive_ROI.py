@@ -11,6 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 from matplotlib.path import Path as MplPath
+# must have PyQt5 installed 
+# import PyQt5
 
 mpl.use('Qt5Agg')  # matplotlib backend for windows
 
@@ -168,10 +170,11 @@ def start_roi_selection(start_img_ind):
     img_display = img_display_axis.imshow(copy_img)
 
     # create confirm mask button
-    confirm_ax = plt.axes([0.81, 0.05, 0.1, 0.075])
-    confirm_button = Button(confirm_ax, 'Confirm')
+    confirm_ax = plt.axes([0.81, 0.15, 0.1, 0.075]) ## old values  = 0.81, 0.05, 0.1, 0.075
+    confirm_button = Button(confirm_ax, 'Confirm!')
     confirm_button.on_clicked(confirm_roi)
     confirm_button._button = confirm_button
+
 
     return curr_mask, confirm_button
 
@@ -199,7 +202,7 @@ def confirm_roi(event):
     # button to show next and prev masked images
     _ = show_next_prev()
 
-
+#this chunk works, but the confirm buttons are giving issues 
 def show_next_prev():
     """
     Create next, previous, restart and finish buttons
@@ -207,8 +210,8 @@ def show_next_prev():
     """
     global next_button, prev_button, restart_masking_button, finish_masking_button
 
-    ax_prev, ax_next = plt.axes([0.7, 0.05, 0.1, 0.075]), plt.axes([0.81, 0.05, 0.1, 0.075])
-    prev_button, next_button = Button(ax_prev, 'Previous'), Button(ax_next, 'Next')
+    ax_prev, ax_next = plt.axes([0.6, 0.05, 0.1, 0.075]), plt.axes([0.7, 0.05, 0.1, 0.075])
+    prev_button, next_button = Button(ax_prev, 'Prev'), Button(ax_next, 'Next')
     prev_button.on_clicked(callback.prev)
     next_button.on_clicked(callback.next)
     restart_masking_ax, finish_masking_ax = plt.axes([0.1, 0.05, 0.3, 0.075]), plt.axes([0.1, 0.15, 0.3, 0.075])
@@ -256,11 +259,11 @@ def restart_masking(event):
     start_img_ind = curr_ind
     img_display = img_display_axis.imshow(cp)
 
-    # Create a confirm mask button for new session
-    confirm_ax = plt.axes([0.81, 0.05, 0.1, 0.075])
-    confirm_button = Button(confirm_ax, 'Confirm')
-    confirm_button.on_clicked(confirm_roi)
-    confirm_button._button = confirm_button
+    # Create a confirm mask button for new session ## commented this out! 
+    # confirm_ax = plt.axes([0.85, 0.05, 0.1, 0.075]) #changed location from 0.85 to 0.1
+    # confirm_button = Button(confirm_ax, 'Confirm')
+    # confirm_button.on_clicked(confirm_roi)
+    # confirm_button._button = confirm_button
 
     # Create a restart mask button for new session
     restart_masking_ax = plt.axes([0.1, 0.05, 0.3, 0.075])
@@ -380,7 +383,9 @@ def get_mask_poly_verts(image, poly_verts, on_original=False):
 
 
 # Sample Image Local Watershed Folder (eg. W1)
-folder_path = r"C:\Users\Dell\Downloads\W1"
+# change this folder path 
+#folder_path = r"../../data/munged/W3"
+folder_path = r"C:\Users\athellma\OneDrive - University of North Carolina at Chapel Hill\Documents\Duke University\Research\_HBEF\CameraTrapAnalysis\hbwater_cameratrap_pheno\data\munged\W3"
 
 # Read paths to all the images into image_folder list
 image_folder = glob2.glob(folder_path + "/*")
