@@ -8,6 +8,7 @@
 .idea
 data_der/
 data_der.zip
+data_der/training_data/
 *.DS_Store
 *.pyc
 scripts/sandbox/ML/example_data/*.jpg
