@@ -52,7 +52,7 @@ class ImageFile:
         extracts date pattern (MM/DD/YY) from file name (eg. Hbwtr_w3_20200315_115918.JPG)
         :return: date
         """
-        date_pattern = "\d{8}"  # eg 12-12-2020
+        date_pattern = r"\d{8}"  # eg 12-12-2020
         date = re.search(date_pattern, self.path).group(0)
         dd, mm, yy = date[-2:], date[-4:-2], date[-8:-4]
         date = mm + '/' + dd + '/' + yy
@@ -62,7 +62,7 @@ class ImageFile:
         """
         extracts water year from dates
         """
-        if self.mm >= "10" or self.mm <= "12":
+        if int(self.mm) >= 10 and int(self.mm) <= 12: #UPDATED HERE! 
             return int(self.yy[-2:]) + 1
         return int(self.yy[-2:])
 
@@ -340,7 +340,7 @@ def finish_masking(event):
             curr_original_mask = get_mask_poly_verts(curr_original_image, poly_verts_list[folder_index],
                                                      on_original=True)
             curr_original_image = apply_mask(curr_original_image, curr_original_mask)
-            curr_img_save_dest = wy_dest + "/" + curr_file_name
+            curr_img_save_dest = wy_dest + "/invert_" + curr_file_name
 
             # save curr_original_image
             Image.fromarray(np.array(curr_original_image)).save(curr_img_save_dest)
@@ -392,7 +392,7 @@ image_folder = glob2.glob(folder_path + "/*")
 
 # Loop over all image files, Create ImageFile objects and save to image_file_list
 image_file_list = []
-for filename in image_folder[:50]:
+for filename in image_folder: #[:50], only 50 images?
     filetype = filename[-4:]
     # Check if the file name ends with ".JPG" or ".jpg"
     if filetype.lower() != ".jpg":
